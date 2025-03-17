@@ -53,7 +53,7 @@ client.unfocused             $color1  $color1  $color2  $color1  $color1
 client.focused_inactive      $color2  $color1  $color2  $color1  $color1
 client.urgent                $color2  $color2  $color1  $color2  $color1
 
-for_window [class=".*"] opacity 0.90
+for_window [class=".*"] opacity 0.85
 for_window [app_id="^.*"] border pixel 3
 for_window [class=".*"] title_format "== %title =="
 
@@ -79,6 +79,7 @@ exec ydotoold
 exec swaymsg "workspace 1; exec brave"
 exec swaymsg "workspace 2; exec kitty"
 exec swaymsg "workspace 3; exec code"
+exec_always autotiling-rs
 
 # =================== Cursor and Mouse Behavior ==============================
 seat * xcursor_theme Hackneyed-24px 24
