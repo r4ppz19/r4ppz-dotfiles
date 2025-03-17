@@ -4,15 +4,16 @@ This repository contains my personal configuration files (dotfiles).
 
 ### Configurations
 
-- sway
-- waybar
-- rofi
-- kitty
-- fish
 - Code
+- fish
+- icons
+- kitty
+- neofetch
 - nvim
 - ranger
-- swaync
+- rofi
+- sway
 - swaylock
+- swaync
 - themes
-- icons
+- waybar
