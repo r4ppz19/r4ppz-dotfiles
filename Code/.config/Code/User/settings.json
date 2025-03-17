@@ -145,5 +145,6 @@
     "window.decorations": "none",
     // "window.newWindowDimensions": "fullscreen",
     "workbench.statusBar.visible": false,
-    "window.menuBarVisibility": "toggle"
+    "window.menuBarVisibility": "toggle",
+    "files.autoSave": "afterDelay"
 }
