@@ -80,6 +80,7 @@ exec swaymsg "workspace 1; exec brave"
 exec swaymsg "workspace 2; exec kitty"
 exec swaymsg "workspace 3; exec code"
 exec_always autotiling-rs
+# exec swaymsg output HDMI-A-1 enable
 
 # =================== Cursor and Mouse Behavior ==============================
 seat * xcursor_theme Hackneyed-24px 24
