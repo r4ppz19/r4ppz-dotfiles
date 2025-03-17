@@ -64,6 +64,10 @@ gaps inner 15
 gaps outer 5
 
 focus_on_window_activation focus
+for_window [class="Brave-browser"] focus
+
+assign [class="Brave-browser"] 1
+assign [class="Code"] 3
 
 # =================== AutoStart Applications =================================
 exec_always export QT_QPA_PLATFORM=wayland
@@ -72,7 +76,7 @@ exec swaync
 exec gammastep -O 3500
 exec nm-applet --indicator
 exec ydotoold
-exec swaymsg "workspace 1; exec kitty"
+exec swaymsg "workspace 1; exec brave"
 exec swaymsg "workspace 2; exec kitty"
 exec swaymsg "workspace 3; exec code"
 
