@@ -13,8 +13,8 @@ set -Ux WLR_RENDERER_ALLOW_THREADED 1
 zoxide init fish | source
 
 # Default:
-set -Ux EDITOR nvim
-set -Ux VISUAL nvim
+set -Ux EDITOR code
+set -Ux VISUAL code
 set -Ux TERMINAL kitty
 
 # Cursor

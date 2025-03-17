@@ -1,11 +1,11 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export EDITOR:nvim
+SETUVAR --export EDITOR:code
 SETUVAR --export LIBVA_DRIVER_NAME:iHD
 SETUVAR --export MOZ_ENABLE_WAYLAND:1
 SETUVAR --export QT_QPA_PLATFORMTHEME:qt
 SETUVAR --export TERMINAL:kitty
-SETUVAR --export VISUAL:nvim
+SETUVAR --export VISUAL:code
 SETUVAR --export WLR_DRM_NO_ATOMIC:1
 SETUVAR --export WLR_NO_HARDWARE_CURSORS:1
 SETUVAR --export WLR_RENDERER_ALLOW_THREADED:1
