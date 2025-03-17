@@ -1,6 +1,6 @@
-### ======================== SWAYFX ========================
+### ======================== SWAYFX =======================================
 
-# =================== Window Blur ===================
+# =================== Window Blur =========================================
 blur enable
 blur_passes 3 
 blur_radius 5  
@@ -8,14 +8,14 @@ blur_xray enable
 blur_noise 0.02  
 corner_radius 2
 
-# =================== Window Shadows ===================
+# =================== Window Shadows ======================================
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 6 
 shadow_color #28282855  
 shadow_inactive_color #28282822
 
-# =================== LayerShell Effects ===================
+# =================== LayerShell Effects ==================================
 # Applies effects to specific Wayland layers (e.g., Waybar, Rofi, SwayNC)
 layer_effects "waybar" {
     blur enable;
@@ -39,12 +39,12 @@ layer_effects "swaync" {
     corner_radius 3;
 }
 
-# =================== General UI Settings ===================
+# =================== General UI Settings ===================================
 font pango: JetBrainsMono Nerd Font Propo 10
 titlebar_padding 1
 titlebar_border_thickness 0
 
-# =================== Border and Window Appearance ===================
+# =================== Border and Window Appearance ==========================
 set $color1     #222222
 set $color2     #458588
 
@@ -63,7 +63,7 @@ default_floating_border none
 gaps inner 20
 gaps outer 0
 
-# =================== AutoStart Applications ===================
+# =================== AutoStart Applications =================================
 exec_always export QT_QPA_PLATFORM=wayland
 exec waybar
 exec swaync
@@ -74,12 +74,12 @@ exec swaymsg "workspace 1; exec kitty"
 exec swaymsg "workspace 2; exec kitty"
 exec swaymsg "workspace 3; exec code"
 
-# =================== Cursor and Mouse Behavior ===================
+# =================== Cursor and Mouse Behavior ==============================
 seat * xcursor_theme Hackneyed-24px 24
 focus_follows_mouse no
 mouse_warping none
 
-# =================== Variable Definitions ===================
+# =================== Variable Definitions ===================================
 set $mod Mod4
 set $left h
 set $down j
@@ -88,11 +88,11 @@ set $right l
 set $term kitty
 set $menu "~/.config/rofi/scripts/launcher_t4"
 
-# =================== Output Configuration ===================
+# =================== Output Configuration ===================================
 output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
 output * adaptive_sync enable
 
-# =================== Input Settings ===================
+# =================== Input Settings =========================================
 input type:keyboard xkb_numlock enabled
 input * {
     xkb_options caps:escape
@@ -103,13 +103,13 @@ input type:touchpad {
     scroll_factor 0.2
 }
 
-# =================== Idle Configuration ===================
+# =================== Idle Configuration =====================================
 exec swayidle -w \
     timeout 600 'swaylock -f --effect-blur 7x5 --clock --indicator' \
     timeout 1200 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"'
 
-# =================== Key Bindings ===================
+# =================== Key Bindings ===========================================
 
 # Numpad Mouse Clicks
 bindsym KP_0 seat seat0 cursor press button1
@@ -141,9 +141,9 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 # Power Off
 bindsym --to-code XF86PowerOff exec "~/.config/rofi/scripts/powermenu_t1"
 
-# ==========================================================================
-# ================================Defaults==================================
-# ==========================================================================
+# =============================================================================
+# ================================Defaults=====================================
+# =============================================================================
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
