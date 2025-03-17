@@ -40,7 +40,7 @@ layer_effects "swaync" {
 }
 
 # =================== General UI Settings ===================================
-font pango: JetBrainsMono Nerd Font Propo 10
+font pango: JetBrainsMono Nerd Font 10
 titlebar_padding 1
 titlebar_border_thickness 0
 
@@ -60,8 +60,10 @@ for_window [class=".*"] title_format "== %title =="
 default_border none
 default_floating_border none
 
-gaps inner 20
-gaps outer 0
+gaps inner 15
+gaps outer 5
+
+focus_on_window_activation focus
 
 # =================== AutoStart Applications =================================
 exec_always export QT_QPA_PLATFORM=wayland
@@ -111,16 +113,8 @@ exec swayidle -w \
 
 # =================== Key Bindings ===========================================
 
-# Numpad Mouse Clicks
-bindsym KP_0 seat seat0 cursor press button1
-bindsym --release KP_0 seat seat0 cursor release button1
-bindsym KP_Decimal seat seat0 cursor press button3
-bindsym --release KP_Decimal seat seat0 cursor release button3
-bindsym KP_Enter seat seat0 cursor press button2
-bindsym --release KP_Enter seat seat0 cursor release button2
-
 # Screenshot
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
+bindsym $mod+Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
 
 # SwayNC Notifications
 bindsym $mod+n exec swaync-client --toggle-panel
@@ -129,21 +123,45 @@ bindsym $mod+n exec swaync-client --toggle-panel
 bindsym $mod+Shift+e exec "~/.config/rofi/scripts/powermenu_t1"
 bindsym Mod4+q exec ~/.config/rofi/applets/bin/quicklinks.sh
 
+# Power Off
+bindsym --to-code XF86PowerOff exec "~/.config/rofi/scripts/powermenu_t1"
+
 # Volume Control
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Brightness Control
-bindsym XF86MonBrightnessUp exec brightnessctl s +10%
-bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 
-# Power Off
-bindsym --to-code XF86PowerOff exec "~/.config/rofi/scripts/powermenu_t1"
+# Numpad Mouse Clicks
+bindsym KP_0 seat seat0 cursor press button1
+bindsym --release KP_0 seat seat0 cursor release button1
+bindsym KP_Decimal seat seat0 cursor press button3
+bindsym --release KP_Decimal seat seat0 cursor release button3
+bindsym KP_Enter seat seat0 cursor press button2
+bindsym --release KP_Enter seat seat0 cursor release button2
+
+# WorkspacesSwitcher
+bindsym $mod+KP_1 workspace 1
+bindsym $mod+KP_2 workspace 2
+bindsym $mod+KP_3 workspace 3
+bindsym $mod+KP_4 workspace 4
+bindsym $mod+KP_5 workspace 5
+bindsym $mod+KP_6 workspace 6
+bindsym $mod+KP_7 workspace 7
+bindsym $mod+KP_8 workspace 8
+bindsym $mod+KP_9 workspace 9
+
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
 
 # =============================================================================
 # ================================Defaults=====================================
 # =============================================================================
+
+
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
