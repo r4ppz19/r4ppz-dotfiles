@@ -1,42 +1,85 @@
-# ===TitleBar===
-font pango: JetBrainsMono Nerd Font Mono Bold 10
+### ======================== SWAYFX ========================
+
+# =================== Window Blur ===================
+blur enable
+blur_passes 3 
+blur_radius 5  
+blur_xray enable 
+blur_noise 0.02  
+corner_radius 2
+
+# =================== Window Shadows ===================
+shadows enable
+shadows_on_csd enable
+shadow_blur_radius 6 
+shadow_color #28282855  
+shadow_inactive_color #28282822
+
+# =================== LayerShell Effects ===================
+# Applies effects to specific Wayland layers (e.g., Waybar, Rofi, SwayNC)
+layer_effects "waybar" {
+    blur enable;
+    blur_xray enable;
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 3;
+}
+layer_effects "rofi" {
+    blur enable;
+    blur_xray enable;
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 3;
+}
+layer_effects "swaync" {
+    blur enable;
+    blur_xray enable;
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 3;
+}
+
+# =================== General UI Settings ===================
+font pango: JetBrainsMono Nerd Font Propo 10
 titlebar_padding 1
 titlebar_border_thickness 0
 
-# ===Border and windows===
+# =================== Border and Window Appearance ===================
 set $color1     #222222
-# set $color2     #fe8019
 set $color2     #458588
 
-#app_id                          border          bground         text            indicator       child_border
-client.focused               $color2           $color2         $color1           $color2         $color2
-# client.unfocused             $color2           $color1         $color2           $color1         $color1
-client.unfocused             $color1           $color1         $color2           $color1         $color1
-client.focused_inactive      $color2           $color1         $color2           $color1         $color1
-client.urgent                $color2           $color2         $color1           $color2         $color1
+client.focused               $color2  $color2  $color1  $color2  $color2
+client.unfocused             $color1  $color1  $color2  $color1  $color1
+client.focused_inactive      $color2  $color1  $color2  $color1  $color1
+client.urgent                $color2  $color2  $color1  $color2  $color1
 
-# default_border pixel 3px
 for_window [class=".*"] opacity 0.90
 for_window [app_id="^.*"] border pixel 3
 for_window [class=".*"] title_format "== %title =="
+
 default_border none
 default_floating_border none
 
 gaps inner 20
 gaps outer 0
 
-# ===AutoStart===
-# exec_alwa    ys export QT_QPA_PLATFORMTHEME=qt5ct
+# =================== AutoStart Applications ===================
 exec_always export QT_QPA_PLATFORM=wayland
 exec waybar
 exec swaync
 exec gammastep -O 3500
+exec nm-applet --indicator
+exec ydotoold
+exec swaymsg "workspace 1; exec kitty"
+exec swaymsg "workspace 2; exec kitty"
+exec swaymsg "workspace 3; exec code"
 
-# ===Cursor and mouse===
+# =================== Cursor and Mouse Behavior ===================
+seat * xcursor_theme Hackneyed-24px 24
 focus_follows_mouse no
 mouse_warping none
 
-### ===Variables===
+# =================== Variable Definitions ===================
 set $mod Mod4
 set $left h
 set $down j
@@ -45,27 +88,61 @@ set $right l
 set $term kitty
 set $menu "~/.config/rofi/scripts/launcher_t4"
 
-### ===Output configuration===
-output * bg /home/r4ppz/Pictures/Wallpaper/wallpaper11.png fill
+# =================== Output Configuration ===================
+output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
+output * adaptive_sync enable
 
-### ===Idle configuration==-
+# =================== Input Settings ===================
+input type:keyboard xkb_numlock enabled
+input * {
+    xkb_options caps:escape
+}
+input type:touchpad {
+    natural_scroll enabled
+    accel_profile flat
+    scroll_factor 0.2
+}
+
+# =================== Idle Configuration ===================
 exec swayidle -w \
     timeout 600 'swaylock -f --effect-blur 7x5 --clock --indicator' \
     timeout 1200 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"'
 
-### ===Key bindings==-
+# =================== Key Bindings ===================
+
+# Numpad Mouse Clicks
+bindsym KP_0 seat seat0 cursor press button1
+bindsym --release KP_0 seat seat0 cursor release button1
+bindsym KP_Decimal seat seat0 cursor press button3
+bindsym --release KP_Decimal seat seat0 cursor release button3
+bindsym KP_Enter seat seat0 cursor press button2
+bindsym --release KP_Enter seat seat0 cursor release button2
+
+# Screenshot
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
+
+# SwayNC Notifications
 bindsym $mod+n exec swaync-client --toggle-panel
 
-bindsym $mod+KP_1 exec "brave-browser"
-bindsym $mod+KP_2 exec "thunar"
-
-# Rofi PowerMenu
+# Rofi Power Menu
 bindsym $mod+Shift+e exec "~/.config/rofi/scripts/powermenu_t1"
 bindsym Mod4+q exec ~/.config/rofi/applets/bin/quicklinks.sh
 
+# Volume Control
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Brightness Control
+bindsym XF86MonBrightnessUp exec brightnessctl s +10%
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+
+# Power Off
+bindsym --to-code XF86PowerOff exec "~/.config/rofi/scripts/powermenu_t1"
+
 # ==========================================================================
-# Defaults
+# ================================Defaults==================================
 # ==========================================================================
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
@@ -144,4 +221,4 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # ===Include additional configs from system locations===
-include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+# include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

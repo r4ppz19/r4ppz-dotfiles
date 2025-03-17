@@ -1,8 +1,6 @@
-# ======================================
-# ================SwayFX================
-# ======================================
+### ======================== SWAYFX =======================================
 
-## Window Blur
+# =================== Window Blur =========================================
 blur enable
 blur_passes 3 
 blur_radius 5  
@@ -10,14 +8,15 @@ blur_xray enable
 blur_noise 0.02  
 corner_radius 2
 
-## Window Shadows
+# =================== Window Shadows ======================================
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 6 
 shadow_color #28282855  
 shadow_inactive_color #28282822
 
-## LayerShell Effects (Waybar & Other Panels)
+# =================== LayerShell Effects ==================================
+# Applies effects to specific Wayland layers (e.g., Waybar, Rofi, SwayNC)
 layer_effects "waybar" {
     blur enable;
     blur_xray enable;
@@ -40,48 +39,47 @@ layer_effects "swaync" {
     corner_radius 3;
 }
 
-# =========================================
-# ================TitleBar=================
-# =========================================
+# =================== General UI Settings ===================================
 font pango: JetBrainsMono Nerd Font Propo 10
 titlebar_padding 1
 titlebar_border_thickness 0
 
-# ===Border and windows===
+# =================== Border and Window Appearance ==========================
 set $color1     #222222
 set $color2     #458588
 
-#app_id                          border          bground         text            indicator       child_border
-client.focused               $color2           $color2         $color1           $color2         $color2
-client.unfocused             $color1           $color1         $color2           $color1         $color1
-client.focused_inactive      $color2           $color1         $color2           $color1         $color1
-client.urgent                $color2           $color2         $color1           $color2         $color1
+client.focused               $color2  $color2  $color1  $color2  $color2
+client.unfocused             $color1  $color1  $color2  $color1  $color1
+client.focused_inactive      $color2  $color1  $color2  $color1  $color1
+client.urgent                $color2  $color2  $color1  $color2  $color1
 
-# default_border pixel 3px
 for_window [class=".*"] opacity 0.90
 for_window [app_id="^.*"] border pixel 3
 for_window [class=".*"] title_format "== %title =="
+
 default_border none
 default_floating_border none
 
 gaps inner 20
 gaps outer 0
 
-# ===AutoStart===
+# =================== AutoStart Applications =================================
 exec_always export QT_QPA_PLATFORM=wayland
 exec waybar
 exec swaync
 exec gammastep -O 3500
 exec nm-applet --indicator
-# exec blueman-applet
 exec ydotoold
+exec swaymsg "workspace 1; exec kitty"
+exec swaymsg "workspace 2; exec kitty"
+exec swaymsg "workspace 3; exec code"
 
-# ===Cursor and mouse===
+# =================== Cursor and Mouse Behavior ==============================
 seat * xcursor_theme Hackneyed-24px 24
 focus_follows_mouse no
 mouse_warping none
 
-### ===Variables===
+# =================== Variable Definitions ===================================
 set $mod Mod4
 set $left h
 set $down j
@@ -90,33 +88,30 @@ set $right l
 set $term kitty
 set $menu "~/.config/rofi/scripts/launcher_t4"
 
-### ===Output configuration===
+# =================== Output Configuration ===================================
 output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
 output * adaptive_sync enable
 
-### ===Input===
+# =================== Input Settings =========================================
 input type:keyboard xkb_numlock enabled
 input * {
     xkb_options caps:escape
-    # repeat_delay 200
-    # repeat_rate 30
 }
 input type:touchpad {
-    # tap enabled
     natural_scroll enabled
     accel_profile flat
     scroll_factor 0.2
 }
 
-### ===Idle configuration===
+# =================== Idle Configuration =====================================
 exec swayidle -w \
     timeout 600 'swaylock -f --effect-blur 7x5 --clock --indicator' \
     timeout 1200 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"'
 
-### ===Key bindings===
+# =================== Key Bindings ===========================================
 
-# NumpadMouseClick
+# Numpad Mouse Clicks
 bindsym KP_0 seat seat0 cursor press button1
 bindsym --release KP_0 seat seat0 cursor release button1
 bindsym KP_Decimal seat seat0 cursor press button3
@@ -124,31 +119,31 @@ bindsym --release KP_Decimal seat seat0 cursor release button3
 bindsym KP_Enter seat seat0 cursor press button2
 bindsym --release KP_Enter seat seat0 cursor release button2
 
-# ScreenShot
+# Screenshot
 bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
 
-# Swaync
+# SwayNC Notifications
 bindsym $mod+n exec swaync-client --toggle-panel
 
-# Rofi PowerMenu
+# Rofi Power Menu
 bindsym $mod+Shift+e exec "~/.config/rofi/scripts/powermenu_t1"
 bindsym Mod4+q exec ~/.config/rofi/applets/bin/quicklinks.sh
 
-# Volume control
+# Volume Control
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# Brightness control
+# Brightness Control
 bindsym XF86MonBrightnessUp exec brightnessctl s +10%
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 
-# PowerOff
+# Power Off
 bindsym --to-code XF86PowerOff exec "~/.config/rofi/scripts/powermenu_t1"
 
-# ==========================================================================
-# Defaults
-# ==========================================================================
+# =============================================================================
+# ================================Defaults=====================================
+# =============================================================================
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
