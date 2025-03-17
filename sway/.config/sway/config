@@ -1,0 +1,233 @@
+# ======================================
+# ================SwayFX================
+# ======================================
+
+## Window Blur
+blur enable
+blur_passes 3 
+blur_radius 5  
+blur_xray enable 
+blur_noise 0.02  
+corner_radius 2
+
+## Window Shadows
+shadows enable
+shadows_on_csd enable
+shadow_blur_radius 6 
+shadow_color #28282855  
+shadow_inactive_color #28282822
+
+## LayerShell Effects (Waybar & Other Panels)
+layer_effects "waybar" {
+    blur enable;
+    blur_xray enable;
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 3;
+}
+layer_effects "rofi" {
+    blur enable;
+    blur_xray enable;
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 3;
+}
+layer_effects "swaync" {
+    blur enable;
+    blur_xray enable;
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 3;
+}
+
+# =========================================
+# ================TitleBar=================
+# =========================================
+font pango: JetBrainsMono Nerd Font Propo 10
+titlebar_padding 1
+titlebar_border_thickness 0
+
+# ===Border and windows===
+set $color1     #222222
+set $color2     #458588
+
+#app_id                          border          bground         text            indicator       child_border
+client.focused               $color2           $color2         $color1           $color2         $color2
+client.unfocused             $color1           $color1         $color2           $color1         $color1
+client.focused_inactive      $color2           $color1         $color2           $color1         $color1
+client.urgent                $color2           $color2         $color1           $color2         $color1
+
+# default_border pixel 3px
+for_window [class=".*"] opacity 0.90
+for_window [app_id="^.*"] border pixel 3
+for_window [class=".*"] title_format "== %title =="
+default_border none
+default_floating_border none
+
+for_window [app_id="code"] fullscreen enable
+exec swaymsg "[app_id=code] fullscreen toggle"
+
+
+gaps inner 20
+gaps outer 0
+
+# ===AutoStart===
+exec_always export QT_QPA_PLATFORM=wayland
+exec waybar
+exec swaync
+exec gammastep -O 3500
+exec nm-applet --indicator
+# exec blueman-applet
+exec ydotoold
+
+
+# ===Cursor and mouse===
+seat * xcursor_theme Hackneyed-24px 24
+focus_follows_mouse no
+mouse_warping none
+
+### ===Variables===
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term kitty
+set $menu "~/.config/rofi/scripts/launcher_t4"
+
+### ===Output configuration===
+output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
+output * adaptive_sync enable
+
+### ===Input===
+input type:keyboard xkb_numlock enabled
+input * {
+    xkb_options caps:escape
+    # repeat_delay 200
+    # repeat_rate 30
+}
+input type:touchpad {
+    # tap enabled
+    natural_scroll enabled
+    accel_profile flat
+    scroll_factor 0.2
+}
+
+### ===Idle configuration==-
+exec swayidle -w \
+    timeout 600 'swaylock -f --effect-blur 7x5 --clock --indicator' \
+    timeout 1200 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"'
+
+### ===Key bindings==
+# NumpadMouseClick
+bindsym KP_0 seat seat0 cursor press button1
+bindsym --release KP_0 seat seat0 cursor release button1
+bindsym KP_Decimal seat seat0 cursor press button3
+bindsym --release KP_Decimal seat seat0 cursor release button3
+bindsym KP_Enter seat seat0 cursor press button2
+bindsym --release KP_Enter seat seat0 cursor release button2
+
+# ScreenShot
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
+
+# Swaync
+bindsym $mod+n exec swaync-client --toggle-panel
+
+# Rofi PowerMenu
+bindsym $mod+Shift+e exec "~/.config/rofi/scripts/powermenu_t1"
+bindsym Mod4+q exec ~/.config/rofi/applets/bin/quicklinks.sh
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec brightnessctl s +10%
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+
+# PowerOff
+bindsym --to-code XF86PowerOff exec "~/.config/rofi/scripts/powermenu_t1"
+
+# ==========================================================================
+# Defaults
+# ==========================================================================
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+bindsym $mod+Shift+c reload
+floating_modifier $mod normal
+
+# ===Moving around===
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# ===Workspaces===
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# ===Layout stuff===
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# ===Scratchpad===
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# ===Resizing containers===
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# ===Include additional configs from system locations===
+# include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

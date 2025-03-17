@@ -1,0 +1,227 @@
+{
+  "layer": "top",
+  "height": 20,
+  "spacing": 5,
+  "margin-top": 5,
+  "margin-right": 8,
+  "margin-left": 8,
+  "modules-left": [
+    "custom/rofi",
+    "sway/workspaces",
+    "sway/window",
+    "hyprland/workspaces",
+    "custom/web-links",
+    "hyprland/window",
+    "power-profiles-daemon",
+    // "mpd",
+    "custom/playerctl"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "memory",
+    "cpu",
+    // "temperature",
+    "disk",
+    // "backlight",
+    "pulseaudio",
+    "battery",
+    "tray",
+    "custom/power-button"
+  ],
+  // Modules configuration
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "active-only": false,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+
+      // "1": "",
+      // "2": "",
+      // "3": "",
+      // "4": "󰎭",
+      // "5": "󰎱",
+      // "6": "󰎳",
+      // "7": "󰎶",
+      // "8": "󰎹",
+      // "9": "󰎼",
+      // "10": ""
+    }
+  },
+  "sway/window": {
+    "format": "<span color='#282828' bgcolor='#d3869b' > 󰣆 </span> {app_id}",
+    "separate-outputs": true,
+    "icon": false
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "active-only": false,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    }
+  },
+  "hyprland/window": {
+    "format": "<span color='#282828' bgcolor='#d3869b' > 󰣆 </span> {class}",
+    "separate-outputs": true,
+    "icon": false
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 8
+  },
+  "disk": {
+    "format": "<span color='#282828' bgcolor='#ea6962' > 󰣆 </span> {free}",
+    "interval": 20
+  },
+  "cpu": {
+    "format": "<span color='#282828' bgcolor='#e78a4e' >  </span> {usage}%",
+    "tooltip": false,
+    "interval": 1
+  },
+  "memory": {
+    "format": "<span color='#282828' bgcolor='#b8bb26' >  </span> {used} GiB",
+    "tooltip": false,
+    "interval": 10,
+    "on-click-right": "kitty -e btop"
+  },
+  "temperature": {
+    "tooltip": false,
+    "thermal-zone": 2,
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 70,
+    "format": "<span color='#282828' bgcolor='#d8a657' >  </span> {temperatureC}°C",
+    "format-critical": "<span color='#282828' bgcolor='#cc241d' >  </span> {temperatureC}°C",
+    "on-click": "notify-send -r 999 -t 3000 'CPU Temperature' \"$(sensors | grep 'Package id 0:' | awk '{print $4}')\""
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "<span color='#282828' bgcolor='#f6c657' > 󰞏 </span> {percent}%",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "<span color='#282828' bgcolor='#83a598' >  </span> {volume}%",
+    "format-muted": "<span color='#282828' bgcolor='#ea6962' >  </span> {volume}%",
+    "format-bluetooth": "<span color='#282828' bgcolor='#83a598' > 󰂰 </span> {volume}%",
+    "format-bluetooth-muted": "<span color='#282828' bgcolor='#ea6962' > 󰂲 </span> {volume}%",
+    "format-source": "{volume}% ",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip": false,
+    "max-volume": 130
+  },
+  "battery#bat2": {
+    "bat": "BAT2"
+  },
+  "battery": {
+    "interval": 1,
+    "states": {
+      "good": 99,
+      "warning": 30,
+      "critical": 20
+    },
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format": "<span color='#282828' bgcolor='#689d6a' > {icon} </span> {capacity}%",
+    "format-critical": "<span color='#282828' bgcolor='#cc241d' > {icon} </span> {capacity}%!!",
+    "format-warning": "<span color='#282828' bgcolor='#e78a4e' > {icon} </span> {capacity}%",
+    "format-full": "<span color='#282828' bgcolor='#689d6a' > {icon} </span> {capacity}%",
+    "format-charging": "<span color='#282828' bgcolor='#689d6a' > 󰂅 </span> {capacity}%",
+    "format-charging-warning": "<span color='#282828' bgcolor='#e78a4e' > 󰢝 </span> {capacity}%",
+    "format-charging-critical": "<span color='#282828' bgcolor='#cc241d' > 󰢜 </span> {capacity}%",
+    "format-plugged": "<span color='#282828' bgcolor='#689d6a' > 󰂅 </span> {capacity}%",
+    "format-alt": "<span color='#282828' bgcolor='#689d6a' > 󱧥 </span> {time}",
+    "tooltip": false
+  },
+  "clock": {
+    // "timezone": "America/New_York",
+    "format": "<span color='#282828' bgcolor='#8ec07c' >  </span> {:%a %d %b %I:%M:%S %p}",
+    "on-click-right": "yad --calendar --no-buttons --mouse --fixed --close-on-unfocus --undecorated --sticky --geometry=300x200+50%+0 --on-top --title='Calendar'",
+    "tooltip": false,
+    "interval": 1
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "custom/rofi": {
+    "format": "<span ></span>",
+    "on-click": "launcher_t4", // Rofi
+    "on-click-right": "~/.config/rofi/scripts/powermenu_t1", // Rofi
+    "escape": true,
+    "tooltip": false
+  },
+  "custom/power-button": {
+    "format": "<span color='#282828' bgcolor='#cc241d' >  </span>",
+    "on-click": "~/.config/rofi/scripts/powermenu_t1", // Rofi
+    "tooltip": false
+  },
+  "custom/web-links": {
+    "format": "<span color='#282828' bgcolor='#83a598' >  </span>",
+    "on-click": "~/.config/rofi/applets/bin/quicklinks.sh",
+    "tooltip": false
+  },
+  "mpd": {
+    "format": "<span color='#282828' bgcolor='#458588' >  </span> {title}",
+    "state-format": "{state}",
+    "state-icons": {
+      "pause": "",
+      "play": "",
+      "stop": ""
+    },
+    "interval": 5,
+    "tooltip": true,
+    "on-click": "mpc toggle",
+    "on-click-right": "mpc stop",
+    "on-click-middle": "kitty -e ncmpcpp"
+  },
+  "custom/playerctl": {
+      "exec": "playerctl metadata --format '{{title}}' 2>/dev/null | awk '{if(length($0) > 20) print substr($0,1,20)\"...\"; else print $0}' || echo 'No media playing'",
+      "interval": 2,
+      "on-click": "playerctl play-pause",
+      "on-click-right": "playerctl next",
+      "on-click-middle": "playerctl previous",
+      "tooltip": false
+  }
+}

@@ -1,0 +1,1 @@
+/home/r4ppz/.local/share/omf/themes/boxfish/fish_prompt.fish
