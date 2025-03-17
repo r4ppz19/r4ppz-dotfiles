@@ -38,9 +38,9 @@
     "warp-on-scroll": false,
     "format": "{icon}",
     "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
+      "1": "",
+      "2": "",
+      "3": "",
       "4": "4",
       "5": "5",
       "6": "6",
@@ -66,30 +66,6 @@
     "separate-outputs": true,
     "icon": false
   },
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-    "active-only": false,
-    "all-outputs": true,
-    "warp-on-scroll": false,
-    "format": "{icon}",
-    "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
-    }
-  },
-  "hyprland/window": {
-    "format": "<span color='#282828' bgcolor='#d3869b' > 󰣆 </span> {class}",
-    "separate-outputs": true,
-    "icon": false
-  },
   "tray": {
     "icon-size": 15,
     "spacing": 8
@@ -104,10 +80,10 @@
     "interval": 1
   },
   "memory": {
-    "format": "<span color='#282828' bgcolor='#b8bb26' >  </span> {used} GiB",
-    "tooltip": false,
-    "interval": 10,
-    "on-click-right": "kitty -e btop"
+      "format": "<span color='#282828' bgcolor='#b8bb26' >  </span> {used} GiB ({percentage}%)",
+      "tooltip": false,
+      "interval": 10,
+      "on-click-right": "kitty -e btop"
   },
   "temperature": {
     "tooltip": false,
