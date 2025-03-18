@@ -71,8 +71,12 @@ assign [class="Brave-browser"] 1
 assign [app_id="kitty"] 2
 assign [class="Code"] 3
 
-# =================== AutoStart Applications =================================
-exec_always export QT_QPA_PLATFORM=wayland
+# =================== AutoStart =================================
+# Essentials:
+# Import current display environment for xdg-desktop-portal services
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 exec waybar
 exec swaync
 exec gammastep -O 3500
@@ -84,9 +88,6 @@ exec ydotoold
 exec_always autotiling-rs
 # exec swaymsg output HDMI-A-1 enable
 
-# Import current display environment for xdg-desktop-portal services
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # =================== Cursor and Mouse Behavior ==============================
 seat * xcursor_theme Hackneyed-24px 24
