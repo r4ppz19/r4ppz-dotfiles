@@ -23,6 +23,7 @@ set -Ux TERMINAL kitty
 
 # alias
 alias ls="eza --icons --group-directories-first --color=auto"
+alias r='ranger'
 
 # Environment Variable
 # set -x QT_QPA_PLATFORMTHEME qt5ct
