@@ -1,6 +1,10 @@
 # Add personal paths safely without overwriting system paths
 fish_add_path -U --append $HOME/.local/bin
 
+# Set
+set -Ux XDG_CURRENT_DESKTOP sway
+set -Ux XDG_SESSION_TYPE wayland
+
 # SwayOptimazations
 set -Ux XDG_SESSION_TYPE wayland
 set -Ux WLR_NO_HARDWARE_CURSORS 1
