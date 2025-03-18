@@ -84,6 +84,10 @@ exec ydotoold
 exec_always autotiling-rs
 # exec swaymsg output HDMI-A-1 enable
 
+# Import current display environment for xdg-desktop-portal services
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 # =================== Cursor and Mouse Behavior ==============================
 seat * xcursor_theme Hackneyed-24px 24
 focus_follows_mouse no
@@ -107,7 +111,7 @@ input type:keyboard xkb_numlock enabled
 input * {
     xkb_options caps:escape
     repeat_delay 500
-    repeat_rate 65
+    repeat_rate 50
 }
 input type:touchpad {
     natural_scroll enabled
