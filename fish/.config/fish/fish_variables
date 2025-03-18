@@ -11,6 +11,7 @@ SETUVAR --export WLR_NO_HARDWARE_CURSORS:1
 SETUVAR --export WLR_RENDERER_ALLOW_THREADED:1
 SETUVAR --export XCURSOR_SIZE:24
 SETUVAR --export XCURSOR_THEME:Hackneyed\x2d24px
+SETUVAR --export XDG_CURRENT_DESKTOP:sway
 SETUVAR --export XDG_SESSION_TYPE:wayland
 SETUVAR __fish_initialized:3800
 SETUVAR fish_color_autosuggestion:brblack
