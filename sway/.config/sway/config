@@ -65,8 +65,10 @@ gaps outer 5
 
 focus_on_window_activation focus
 for_window [class="Brave-browser"] focus
+for_window [app_id="kitty"] focus
 
 assign [class="Brave-browser"] 1
+assign [app_id="kitty"] 2
 assign [class="Code"] 3
 
 # =================== AutoStart Applications =================================
@@ -76,9 +78,9 @@ exec swaync
 exec gammastep -O 3500
 exec nm-applet --indicator
 exec ydotoold
-exec swaymsg "workspace 1; exec brave"
-exec swaymsg "workspace 2; exec kitty"
-exec swaymsg "workspace 3; exec code"
+# exec swaymsg "workspace 1; exec brave"
+# exec swaymsg "workspace 2; exec kitty"
+# exec swaymsg "workspace 3; exec code"
 exec_always autotiling-rs
 # exec swaymsg output HDMI-A-1 enable
 
@@ -104,6 +106,8 @@ output * adaptive_sync enable
 input type:keyboard xkb_numlock enabled
 input * {
     xkb_options caps:escape
+    repeat_delay 500
+    repeat_rate 65
 }
 input type:touchpad {
     natural_scroll enabled
@@ -137,7 +141,7 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# Brightness Control
+# Brightness Control 
 bindsym XF86MonBrightnessUp exec brightnessctl s +5%
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 
