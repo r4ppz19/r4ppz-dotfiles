@@ -145,9 +145,10 @@
     // "window.newWindowDimensions": "fullscreen",
     "workbench.statusBar.visible": false,
     "window.menuBarVisibility": "toggle",
+    "window.customTitleBarVisibility": "never",
+    
     "files.autoSave": "afterDelay",
     "telemetry.telemetryLevel": "off",
     "gitlens.telemetry.enabled": false,
-    "code-runner.enableAppInsights": false,
-    "window.customTitleBarVisibility": "never"
+    "code-runner.enableAppInsights": false
 }

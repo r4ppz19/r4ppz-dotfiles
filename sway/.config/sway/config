@@ -22,7 +22,7 @@ layer_effects "waybar" {
     blur_xray enable;
     blur_ignore_transparent enable;
     shadows enable;
-    corner_radius 3;
+    corner_radius 0;
 }
 layer_effects "rofi" {
     blur enable;
@@ -62,7 +62,7 @@ for_window [class=".*"] title_format "== %title =="
 default_border none
 default_floating_border none
 
-gaps inner 10
+gaps inner 20
 gaps outer 0
 
 focus_on_window_activation focus
@@ -70,11 +70,9 @@ for_window [class="Brave-browser"] focus
 for_window [app_id="kitty"] focus
 for_window [app_id="code"] focus
 
-
 assign [class="Brave-browser"] 1
 assign [app_id="kitty"] 2
 assign [app_id="code"] 3
-
 
 # =================== AutoStart =================================
 # Essentials:
@@ -82,15 +80,18 @@ assign [app_id="code"] 3
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-exec waybar
+bar {
+  swaybar_command waybar
+}
+
 exec swaync
 exec gammastep -O 3500
 exec nm-applet --indicator
-exec ydotoold
+exec_always autotiling-rs
+# exec ydotoold
 # exec swaymsg "workspace 1; exec brave"
 # exec swaymsg "workspace 2; exec kitty"
 # exec swaymsg "workspace 3; exec code"
-exec_always autotiling-rs
 # exec swaymsg output HDMI-A-1 enable
 
 
@@ -141,11 +142,11 @@ bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
 bindsym $mod+n exec swaync-client --toggle-panel
 
 # Rofi Power Menu
-bindsym $mod+Shift+e exec "~/.config/rofi/scripts/powermenu_t1"
+bindsym $mod+Shift+e exec "~/.config/rofi/powermenu/type-3/powermenu.sh"
 bindsym Mod4+q exec ~/.config/rofi/applets/bin/quicklinks.sh
 
 # Power Off
-bindsym --to-code XF86PowerOff exec "~/.config/rofi/scripts/powermenu_t1"
+bindsym --to-code XF86PowerOff exec "~/.config/rofi/powermenu/type-3/powermenu.sh"
 
 # Volume Control
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
