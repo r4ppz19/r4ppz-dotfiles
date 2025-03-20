@@ -1,6 +1,6 @@
-### ======================== SWAYFX =======================================
+### ======================== SWAYFX CONFIGURATION ===========================
 
-# =================== Window Blur =========================================
+# ======================== Window Blur Settings =============================
 blur enable
 blur_passes 3 
 blur_radius 5  
@@ -8,15 +8,15 @@ blur_xray enable
 blur_noise 0.02  
 corner_radius 2
 
-# =================== Window Shadows ======================================
+# ======================== Window Shadows Settings ==========================
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 6 
 shadow_color #28282855  
 shadow_inactive_color #28282822
 
-# =================== LayerShell Effects ==================================
-# Applies effects to specific Wayland layers (e.g., Waybar, Rofi, SwayNC)
+# ======================== LayerShell Effects ===============================
+# Effects for specific Wayland layers (e.g., Waybar, Rofi, SwayNC)
 layer_effects "waybar" {
     blur enable;
     blur_xray enable;
@@ -39,16 +39,15 @@ layer_effects "swaync" {
     corner_radius 3;
 }
 
-# =================== General UI Settings ===================================
+# ======================== General UI Settings ==============================
 font pango: JetBrainsMono Nerd Font Bold 10
 titlebar_padding 1
 titlebar_border_thickness 0
 
-# =================== Border and Window Appearance ==========================
+# ======================== Border and Window Appearance =====================
 set $color1     #222222
 # set $color2     #458588
 set $color2    #81d1d5
-
 
 client.focused               $color2  $color2  $color1  $color2  $color2
 client.unfocused             $color1  $color1  $color2  $color1  $color1
@@ -58,6 +57,10 @@ client.urgent                $color2  $color2  $color1  $color2  $color1
 for_window [class=".*"] opacity 0.95
 for_window [app_id="^.*"] border pixel 2
 for_window [class=".*"] title_format "== %title =="
+
+for_window [window_role="dialog"] floating enable, resize set 800 600
+for_window [title="Dialog"] floating enable, resize set 800 600
+for_window [floating] resize set 800 600
 
 default_border none
 default_floating_border none
@@ -74,7 +77,7 @@ assign [class="Brave-browser"] 1
 assign [app_id="kitty"] 2
 assign [app_id="code"] 3
 
-# =================== AutoStart =================================
+# ======================== AutoStart Applications ===========================
 # Essentials:
 # Import current display environment for xdg-desktop-portal services
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -94,13 +97,12 @@ exec_always autotiling-rs
 # exec swaymsg "workspace 3; exec code"
 # exec swaymsg output HDMI-A-1 enable
 
-
-# =================== Cursor and Mouse Behavior ==============================
+# ======================== Cursor and Mouse Behavior ========================
 seat * xcursor_theme Hackneyed-24px 24
 focus_follows_mouse no
 mouse_warping none
 
-# =================== Variable Definitions ===================================
+# ======================== Variable Definitions =============================
 set $mod Mod4
 set $left h
 set $down j
@@ -109,11 +111,11 @@ set $right l
 set $term kitty
 set $menu "~/.config/rofi/scripts/launcher_t4"
 
-# =================== Output Configuration ===================================
+# ======================== Output Configuration =============================
 output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
 output * adaptive_sync enable
 
-# =================== Input Settings =========================================
+# ======================== Input Settings ===================================
 input type:keyboard xkb_numlock enabled
 output * scale 1
 input * {
@@ -127,14 +129,13 @@ input type:touchpad {
     scroll_factor 0.2
 }
 
-# =================== Idle Configuration =====================================
+# ======================== Idle Configuration ===============================
 exec swayidle -w \
     timeout 600 'swaylock -f --effect-blur 7x5 --clock --indicator' \
     timeout 1200 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"'
 
-# =================== Key Bindings ===========================================
-
+# ======================== Key Bindings =====================================
 # Screenshot
 bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
 
@@ -165,7 +166,7 @@ bindsym --release KP_Decimal seat seat0 cursor release button3
 bindsym KP_Enter seat seat0 cursor press button2
 bindsym --release KP_Enter seat seat0 cursor release button2
 
-# WorkspacesSwitcher
+# Workspace Switcher
 bindsym $mod+KP_1 workspace 1
 bindsym $mod+KP_2 workspace 2
 bindsym $mod+KP_3 workspace 3
@@ -179,18 +180,14 @@ bindsym $mod+KP_9 workspace 9
 bindsym Ctrl+Alt+Right workspace next
 bindsym Ctrl+Alt+Left workspace prev
 
-# =============================================================================
-# ================================Defaults=====================================
-# =============================================================================
-
-
+# ======================== Default Key Bindings =============================
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+Shift+c reload
 floating_modifier $mod normal
 
-# ===Moving around===
+# === Moving Around ===
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
@@ -208,7 +205,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# ===Workspaces===
+# === Workspaces ===
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -230,7 +227,7 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-# ===Layout stuff===
+# === Layout Management ===
 bindsym $mod+b splith
 bindsym $mod+v splitv
 bindsym $mod+s layout stacking
@@ -241,11 +238,11 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
-# ===Scratchpad===
+# === Scratchpad ===
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
-# ===Resizing containers===
+# === Resizing Containers ===
 mode "resize" {
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
@@ -260,5 +257,5 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# ===Include additional configs from system locations===
+# === Include Additional Configs ===
 # include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
