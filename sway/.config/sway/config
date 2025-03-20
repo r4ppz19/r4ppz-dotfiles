@@ -40,36 +40,41 @@ layer_effects "swaync" {
 }
 
 # =================== General UI Settings ===================================
-font pango: JetBrainsMono Nerd Font 10
+font pango: JetBrainsMono Nerd Font Bold 10
 titlebar_padding 1
 titlebar_border_thickness 0
 
 # =================== Border and Window Appearance ==========================
 set $color1     #222222
-set $color2     #458588
+# set $color2     #458588
+set $color2    #81d1d5
+
 
 client.focused               $color2  $color2  $color1  $color2  $color2
 client.unfocused             $color1  $color1  $color2  $color1  $color1
 client.focused_inactive      $color2  $color1  $color2  $color1  $color1
 client.urgent                $color2  $color2  $color1  $color2  $color1
 
-for_window [class=".*"] opacity 0.85
-for_window [app_id="^.*"] border pixel 3
+for_window [class=".*"] opacity 0.95
+for_window [app_id="^.*"] border pixel 2
 for_window [class=".*"] title_format "== %title =="
 
 default_border none
 default_floating_border none
 
-gaps inner 15
-gaps outer 5
+gaps inner 10
+gaps outer 0
 
 focus_on_window_activation focus
 for_window [class="Brave-browser"] focus
 for_window [app_id="kitty"] focus
+for_window [app_id="code"] focus
+
 
 assign [class="Brave-browser"] 1
 assign [app_id="kitty"] 2
-assign [class="Code"] 3
+assign [app_id="code"] 3
+
 
 # =================== AutoStart =================================
 # Essentials:
@@ -109,6 +114,7 @@ output * adaptive_sync enable
 
 # =================== Input Settings =========================================
 input type:keyboard xkb_numlock enabled
+output * scale 1
 input * {
     xkb_options caps:escape
     repeat_delay 500
@@ -129,7 +135,7 @@ exec swayidle -w \
 # =================== Key Bindings ===========================================
 
 # Screenshot
-bindsym $mod+Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
 
 # SwayNC Notifications
 bindsym $mod+n exec swaync-client --toggle-panel
@@ -169,8 +175,8 @@ bindsym $mod+KP_7 workspace 7
 bindsym $mod+KP_8 workspace 8
 bindsym $mod+KP_9 workspace 9
 
-bindsym $mod+bracketright workspace next
-bindsym $mod+bracketleft workspace prev
+bindsym Ctrl+Alt+Right workspace next
+bindsym Ctrl+Alt+Left workspace prev
 
 # =============================================================================
 # ================================Defaults=====================================
