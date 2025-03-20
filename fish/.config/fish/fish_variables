@@ -1,18 +1,36 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export BLUEZ_AUTO_ENABLE:1
 SETUVAR --export EDITOR:code
+SETUVAR --export ELECTRON_OZONE_PLATFORM_HINT:wayland
+SETUVAR --export GBM_BACKEND:nir
+SETUVAR --export GDK_BACKEND:wayland
+SETUVAR --export GTK_USE_PORTAL:1
 SETUVAR --export LIBVA_DRIVER_NAME:iHD
+SETUVAR --export MESA_GLSL_CACHE_DISABLE:0
+SETUVAR --export MESA_GL_VERSION_OVERRIDE:4\x2e6
+SETUVAR --export MESA_NO_ERROR:1
+SETUVAR --export MESA_SHADER_CACHE_DIR:/home/r4ppz/\x2ecache/mesa
 SETUVAR --export MOZ_ENABLE_WAYLAND:1
-SETUVAR --export QT_QPA_PLATFORMTHEME:qt
+SETUVAR --export PIPEWIRE_LATENCY:128/48000
+SETUVAR --export PULSE_LATENCY_MSEC:32
+SETUVAR --export QT_QPA_PLATFORM:wayland
+SETUVAR --export QT_QPA_PLATFORMTHEME:gtk2
+SETUVAR --export SWT_AUTO_WAYLAND:1
 SETUVAR --export TERMINAL:kitty
 SETUVAR --export VISUAL:code
+SETUVAR --export WIREPLUMBER_CONFIG_DIR:/home/r4ppz/\x2econfig/wireplumber
 SETUVAR --export WLR_DRM_NO_ATOMIC:1
 SETUVAR --export WLR_NO_HARDWARE_CURSORS:1
+SETUVAR --export WLR_RENDERER:vulkan
 SETUVAR --export WLR_RENDERER_ALLOW_THREADED:1
 SETUVAR --export XCURSOR_SIZE:24
 SETUVAR --export XCURSOR_THEME:Hackneyed\x2d24px
-SETUVAR --export XDG_CURRENT_DESKTOP:sway
+SETUVAR --export XDG_CURRENT_DESKTOP:Sway
+SETUVAR --export XDG_DATA_HOME:/home/r4ppz/\x2elocal/share
+SETUVAR --export XDG_SESSION_DESKTOP:Sway
 SETUVAR --export XDG_SESSION_TYPE:wayland
+SETUVAR --export __GLX_VENDOR_LIBRARY_NAME:mesa
 SETUVAR __fish_initialized:3800
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
