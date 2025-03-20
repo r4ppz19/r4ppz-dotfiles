@@ -1,105 +1,76 @@
 #!/usr/bin/env bash
 
-## Author : Aditya Shakya (adi1090x)
-## Github : @adi1090x
-#
-## Rofi   : Power Menu
-#
-## Available Styles
-#
-## style-1   style-2   style-3   style-4   style-5
+# Power Menu for Rofi
+# Adapted for Sway + Swaylock + SDDM
 
-# Current Theme
+# Directories & Theme
 dir="$HOME/.config/rofi/powermenu/type-3"
-theme='style-1'
+theme='style-3'
 
-# CMDs
-uptime="`uptime -p | sed -e 's/up //g'`"
-host=`hostname`
+# Get system info
+uptime="$(uptime -p | sed -e 's/up //g')"
+host="$(hostname)"
 
-# Options
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
-yes=''
-no=''
+# Icons (Nerd Fonts)
+shutdown='󰐥'  # nf-md-power
+reboot='󰜉'    # nf-md-restart
+lock=''       # nf-fa-lock
+suspend='󰤄'   # nf-md-sleep
+logout='󰍃'    # nf-md-logout
+yes=''        # nf-fa-check
+no=''         # nf-fa-times
 
-# Rofi CMD
+# Rofi Command
 rofi_cmd() {
 	rofi -dmenu \
 		-p "Uptime: $uptime" \
 		-mesg "Uptime: $uptime" \
-		-theme ${dir}/${theme}.rasi
+		-theme "${dir}/${theme}.rasi"
 }
 
-# Confirmation CMD
+# Confirmation Dialog
 confirm_cmd() {
 	rofi -dmenu \
 		-p 'Confirmation' \
-		-mesg 'Are you Sure?' \
-		-theme ${dir}/shared/confirm.rasi
+		-mesg 'Are you sure?' \
+		-theme "${dir}/shared/confirm.rasi"
 }
 
-# Ask for confirmation
+# Ask for Confirmation
 confirm_exit() {
 	echo -e "$yes\n$no" | confirm_cmd
 }
 
-# Pass variables to rofi dmenu
+# Show Rofi Menu
 run_rofi() {
 	echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
 }
 
-# Execute Command
+# Execute Commands
 run_cmd() {
 	selected="$(confirm_exit)"
 	if [[ "$selected" == "$yes" ]]; then
-		if [[ $1 == '--shutdown' ]]; then
-			systemctl poweroff
-		elif [[ $1 == '--reboot' ]]; then
-			systemctl reboot
-		elif [[ $1 == '--suspend' ]]; then
-			mpc -q pause
-			amixer set Master mute
-			systemctl suspend
-		elif [[ $1 == '--logout' ]]; then
-			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-				openbox --exit
-			elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-				bspc quit
-			elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-				i3-msg exit
-			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-			fi
-		fi
+		case "$1" in
+			'--shutdown') systemctl poweroff ;;
+			'--reboot') systemctl reboot ;;
+			'--suspend')
+				mpc -q pause
+				amixer set Master mute
+				systemctl suspend
+				;;
+			'--logout') swaymsg exit ;;  # Logout from Sway
+		esac
 	else
 		exit 0
 	fi
 }
 
-# Actions
+# Handle User Selection
 chosen="$(run_rofi)"
-case ${chosen} in
-    $shutdown)
-		run_cmd --shutdown
-        ;;
-    $reboot)
-		run_cmd --reboot
-        ;;
-    $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
-        ;;
-    $suspend)
-		run_cmd --suspend
-        ;;
-    $logout)
-		run_cmd --logout
-        ;;
+case "$chosen" in
+    "$shutdown") run_cmd --shutdown ;;
+    "$reboot") run_cmd --reboot ;;
+	"$lock") /home/r4ppz/r4ppz-dotfiles/custom-script/lock.sh ;;
+    "$suspend") run_cmd --suspend ;;
+    "$logout") run_cmd --logout ;;
 esac
