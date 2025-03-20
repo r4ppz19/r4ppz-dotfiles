@@ -1,0 +1,32 @@
+#!/bin/bash
+swaylock --daemonize \
+    --screenshots \
+    --clock \
+    --indicator \
+    --indicator-radius 100 \
+    --indicator-thickness 10 \
+    --ring-color 458588 \
+    --ring-clear-color 458588 \
+    --ring-ver-color 83a598 \
+    --ring-wrong-color fb4934 \
+    --key-hl-color 83a598 \
+    --separator-color 504945 \
+    --line-color 00000000 \
+    --inside-color 282828 \
+    --inside-clear-color 282828 \
+    --inside-ver-color 282828 \
+    --inside-wrong-color 282828 \
+    --text-color d5c4a1 \
+    --text-clear-color d5c4a1 \
+    --text-ver-color d5c4a1 \
+    --text-wrong-color d5c4a1 \
+    --text-caps-lock-color d5c4a1 \
+    --bs-hl-color fb4934 \
+    --caps-lock-bs-hl-color fb4934 \
+    --caps-lock-key-hl-color fb4934 \
+    --fade-in 0.2 \
+    --grace 2 \
+    --ignore-empty-password \
+    --effect-blur 7x5 \
+    --effect-vignette 0.5:0.5 \
+    --image /home/r4ppz/Pictures/Wallpaper/wallpaper11.png
