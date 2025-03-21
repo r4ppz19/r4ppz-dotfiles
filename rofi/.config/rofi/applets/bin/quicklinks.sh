@@ -10,8 +10,8 @@ source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
 # Theme Elements
-prompt='Artificial Intelligence'
-mesg="The best LLM's"
+prompt='AI'
+mesg="r4ppz"
 
 if [[ ( "$theme" == *'type-1'* ) || ( "$theme" == *'type-3'* ) || ( "$theme" == *'type-5'* ) ]]; then
     list_col='1'
@@ -33,14 +33,14 @@ if [[ "$layout" == 'NO' ]]; then
     option_1="  ChatGPT"
     option_2="󱚝  DeepSeek"
     option_3="󰚩  Qwen"
-    option_4="󱚣  Kimi"
-    option_5="󱚥  Perplexity"
+    option_4="󱚥  Gemini"
+    option_5="󱚣  Kimi"
 else
     option_1=" "
     option_2="󱚝 "
     option_3="󰚩 "
-    option_4="󱚣"
-    option_5="󱚥"
+    option_4="󱚥"
+    option_5="󱚣"
 fi
 
 # Rofi CMD
@@ -69,9 +69,9 @@ run_cmd() {
     elif [[ "$1" == '--opt3' ]]; then
         xdg-open 'https://chat.qwen.ai/'
     elif [[ "$1" == '--opt4' ]]; then
-        xdg-open 'https://kimi.ai/'
+        xdg-open 'https://gemini.google.com/app'
     elif [[ "$1" == '--opt5' ]]; then
-        xdg-open 'https://www.perplexity.ai/'
+        xdg-open 'https://kimi.ai/'
     fi
 }
 
