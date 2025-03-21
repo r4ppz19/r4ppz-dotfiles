@@ -2,9 +2,9 @@
   "layer": "top",
   "height": 21,
   "spacing": 3,
-  "margin-top": 0,
-  "margin-right": 0,
-  "margin-left": 0,
+  "margin-top": 5,
+  "margin-right": 12,
+  "margin-left": 12,
   "modules-left": [
     "custom/rofi",
     "sway/workspaces",
@@ -29,7 +29,7 @@
     "custom/power-button"
   ],
   // Modules configuration
-  "sway/workspaces": {    
+  "sway/workspaces": {
     "disable-scroll": true,
     "all-workspaces": true,
     "active-only": false,
@@ -47,7 +47,6 @@
       "8": "8",
       "9": "",
       "10": "10"
-
     }
   },
   "sway/window": {
@@ -69,19 +68,18 @@
     "interval": 1
   },
   "memory": {
-      "format": "<span color='#282828' bgcolor='#b8bb26' >  </span> {used} GiB ({percentage}%)",
-      "tooltip": false,
-      "interval": 10,
-      "on-click-right": "kitty -e btop"
+    "format": "<span color='#282828' bgcolor='#b8bb26' >  </span> {used} GiB ({percentage}%)",
+    "tooltip": false,
+    "interval": 10,
+    "on-click-right": "kitty -e btop"
   },
   "temperature": {
-      "tooltip": false,
-      "thermal-zone": 6,
-      "critical-threshold": 70,
-      "interval": 2,
-      "format": "<span color='#282828' bgcolor='#d8a657' >  </span> {temperatureC}°C",
-      "format-critical": "<span color='#282828' bgcolor='#cc241d' >  </span> {temperatureC}°C",
-      "on-click": "notify-send -r 999 -t 3000 'CPU Temperature' \"$(sensors | grep 'Package id' | awk '{print $3}')\""
+    "tooltip": false,
+    "thermal-zone": 6,
+    "critical-threshold": 70,
+    "interval": 5,
+    "format": "<span color='#282828' bgcolor='#d8a657' >  </span> {temperatureC}°C",
+    "format-critical": "<span color='#282828' bgcolor='#cc241d' >  </span> {temperatureC}°C"
   },
   "backlight": {
     // "device": "acpi_video1",
@@ -135,7 +133,7 @@
   "clock": {
     // "timezone": "America/New_York",
     "format": "<span color='#282828' bgcolor='#8ec07c' >  </span> {:%a %d %b %I:%M:%S %p}",
-    "on-click-right": "yad --calendar --no-buttons --mouse --fixed --close-on-unfocus --undecorated --sticky --geometry=300x200+50%+0 --on-top --title='Calendar'",
+    "on-click-right": "yad --calendar --no-buttons --mouse --fixed --close-on-unfocus --undecorated --sticky --geometry=300x200+50%+30 --on-top --title='Calendar'",
     "tooltip": false,
     "interval": 1
   },
@@ -182,11 +180,11 @@
     "on-click-middle": "kitty -e ncmpcpp"
   },
   "custom/playerctl": {
-      "exec": "playerctl metadata --format '{{title}}' 2>/dev/null | awk '{if(length($0) > 20) print substr($0,1,20)\"...\"; else print $0}' || echo 'No media playing'",
-      "interval": 2,
-      "on-click": "playerctl play-pause",
-      "on-click-right": "playerctl next",
-      "on-click-middle": "playerctl previous",
-      "tooltip": false
+    "exec": "playerctl metadata --format '{{title}}' 2>/dev/null | awk '{if(length($0) > 20) print substr($0,1,20)\"...\"; else print $0}' || echo 'No media playing'",
+    "interval": 2,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "tooltip": false
   }
 }
