@@ -1,6 +1,8 @@
-### ======================== SWAYFX CONFIGURATION ===========================
+### ======================== SWAYFX CONFIGURATION =============================================
 
-# ======================== Window Blur Settings =============================
+# =============================================================================================
+# WINDOW BLUR SETTINGS
+# =============================================================================================
 blur enable
 blur_passes 3 
 blur_radius 5  
@@ -8,14 +10,18 @@ blur_xray enable
 blur_noise 0.02  
 corner_radius 2
 
-# ======================== Window Shadows Settings ==========================
+# =============================================================================================
+# WINDOW SHADOWS SETTINGS
+# =============================================================================================
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 6 
 shadow_color #28282855  
 shadow_inactive_color #28282822
 
-# ======================== LayerShell Effects ===============================
+# =============================================================================================
+# LAYERSHELL EFFECTS
+# =============================================================================================
 # Effects for specific Wayland layers (e.g., Waybar, Rofi, SwayNC)
 layer_effects "waybar" {
     blur enable;
@@ -29,22 +35,26 @@ layer_effects "rofi" {
     blur_xray enable;
     blur_ignore_transparent enable;
     shadows enable;
-    corner_radius 3;
+    corner_radius 0;
 }
 layer_effects "swaync" {
     blur enable;
     blur_xray enable;
     blur_ignore_transparent enable;
     shadows enable;
-    corner_radius 3;
+    corner_radius 0;
 }
 
-# ======================== General UI Settings ==============================
+# =============================================================================================
+# GENERAL UI SETTINGS
+# =============================================================================================
 font pango: JetBrainsMono Nerd Font Bold 10
 titlebar_padding 1
 titlebar_border_thickness 0
 
-# ======================== Border and Window Appearance =====================
+# =============================================================================================
+# BORDER AND WINDOW APPEARANCE
+# =============================================================================================
 set $color1     #222222
 # set $color2     #458588
 set $color2    #81d1d5
@@ -54,30 +64,29 @@ client.unfocused             $color1  $color1  $color2  $color1  $color1
 client.focused_inactive      $color2  $color1  $color2  $color1  $color1
 client.urgent                $color2  $color2  $color1  $color2  $color1
 
-for_window [class=".*"] opacity 0.95
+for_window [class=".*"] opacity 0.98
 for_window [app_id="^.*"] border pixel 2
 for_window [class=".*"] title_format "== %title =="
-
-for_window [window_role="dialog"] floating enable, resize set 800 600
-for_window [title="Dialog"] floating enable, resize set 800 600
-for_window [floating] resize set 800 600
 
 default_border none
 default_floating_border none
 
-gaps inner 20
+gaps inner 12
 gaps outer 0
 
 focus_on_window_activation focus
 for_window [class="Brave-browser"] focus
-for_window [app_id="kitty"] focus
 for_window [app_id="code"] focus
+exec swaymsg 'for_window [class="Code"] focus'
+for_window [app_id="kitty"] focus
 
 assign [class="Brave-browser"] 1
 assign [app_id="kitty"] 2
 assign [app_id="code"] 3
 
-# ======================== AutoStart Applications ===========================
+# =============================================================================================
+# AUTOSTART APPLICATIONS
+# =============================================================================================
 # Essentials:
 # Import current display environment for xdg-desktop-portal services
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -97,12 +106,16 @@ exec_always autotiling-rs
 # exec swaymsg "workspace 3; exec code"
 # exec swaymsg output HDMI-A-1 enable
 
-# ======================== Cursor and Mouse Behavior ========================
+# =============================================================================================
+# CURSOR AND MOUSE BEHAVIOR
+# =============================================================================================
 seat * xcursor_theme Hackneyed-24px 24
 focus_follows_mouse no
 mouse_warping none
 
-# ======================== Variable Definitions =============================
+# =============================================================================================
+# VARIABLE DEFINITIONS
+# =============================================================================================
 set $mod Mod4
 set $left h
 set $down j
@@ -111,13 +124,17 @@ set $right l
 set $term kitty
 set $menu "~/.config/rofi/scripts/launcher_t4"
 
-# ======================== Output Configuration =============================
+# =============================================================================================
+# OUTPUT CONFIGURATION
+# =============================================================================================
 output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
 output * adaptive_sync enable
-
-# ======================== Input Settings ===================================
-input type:keyboard xkb_numlock enabled
 output * scale 1
+
+# =============================================================================================
+# INPUT SETTINGS
+# =============================================================================================
+input type:keyboard xkb_numlock enabled
 input * {
     xkb_options caps:escape
     repeat_delay 500
@@ -129,13 +146,17 @@ input type:touchpad {
     scroll_factor 0.2
 }
 
-# ======================== Idle Configuration ===============================
+# =============================================================================================
+# IDLE CONFIGURATION
+# =============================================================================================
 exec swayidle -w \
     timeout 600 'swaylock -f --effect-blur 7x5 --clock --indicator' \
     timeout 1200 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"'
 
-# ======================== Key Bindings =====================================
+# =============================================================================================
+# KEY BINDINGS
+# =============================================================================================
 # Screenshot
 bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
 
@@ -180,7 +201,9 @@ bindsym $mod+KP_9 workspace 9
 bindsym Ctrl+Alt+Right workspace next
 bindsym Ctrl+Alt+Left workspace prev
 
-# ======================== Default Key Bindings =============================
+# =============================================================================================
+# DEFAULT KEY BINDINGS
+# =============================================================================================
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
@@ -257,5 +280,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# === Include Additional Configs ===
+# =============================================================================================
+# INCLUDE ADDITIONAL CONFIGS
+# =============================================================================================
 # include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
