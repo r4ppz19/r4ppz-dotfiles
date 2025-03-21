@@ -1,23 +1,27 @@
 {
     // === EXTENSIONS ===
     "github.copilot.enable": {
-    "*": false,
+        "*": false,
         "plaintext": false,
         "markdown": false,
         "scminput": false
     },
     "redhat.telemetry.enabled": false,
-    "explorer.compactFolders": true,
+    "codium.enable": false,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4",
+    "gitlens.graph.layout": "editor",
+    "gitlens.codeLens.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.telemetry.enabled": false,
 
     // === GIT ===
     "git.decorations.enabled": true,
-    "gitlens.codeLens.enabled": false,
-    "gitlens.currentLine.enabled": false,
     "git.autofetch": true,
     "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "never",
 
     // === EDITOR ===
-    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
     "editor.fontFamily": "JetBrainsMono Nerd Font, JetBrains Mono, Fira Code, FiraCode Nerd Font",
     "editor.fontSize": 13,
     "editor.fontLigatures": false,
@@ -32,6 +36,17 @@
     "editor.cursorBlinking": "solid",
     "editor.lineHighlightBackground": "#3c3836",
     "editor.selectionBackground": "#504945",
+    "editorStickyScroll.border": "#3c3836",
+    "editorGutter.background": "#282828",
+    "editorGutter.modifiedBackground": "#665c54",
+    "editorGutter.addedBackground": "#b8bb26",
+    "editorGutter.deletedBackground": "#fb4934",
+
+    // === TERMINAL ===
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.background": "#282828",
 
     // === WORKBENCH ===
     "workbench.colorTheme": "Gruvbox Dark Hard",
@@ -48,11 +63,12 @@
     "workbench.list.smoothScrolling": false,
     "workbench.activityBar.location": "bottom",
     "workbench.layoutControl.enabled": false,
-
-    // === TERMINAL ===
-    "terminal.integrated.smoothScrolling": true,
-    "terminal.background": "#282828",
-    "terminal.integrated.fontSize": 13,
+    "workbench.navigationControl.enabled": false,
+    "workbench.statusBar.visible": false,
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.sqlite": "default"
+    },
 
     // === UI CUSTOMIZATIONS (Gruvbox Theme) ===
     "workbench.colorCustomizations": {
@@ -104,51 +120,32 @@
         "panel.border": "#504945",
         "sideBar.border": "#504945",
         "scrollbar.shadow": "#282828",
-        "editorStickyScroll.border": "#3c3836",
-        "editorGutter.background": "#282828",
-        "editorGutter.modifiedBackground": "#665c54",
-        "editorGutter.addedBackground": "#b8bb26",
-        "editorGutter.deletedBackground": "#fb4934",
-        "statusBarItem.remoteBackground": "#d79921",
-        "focusBorder": "#504945",
         "scrollbarSlider.background": "#504945",
-        "scrollbarSlider.activeBackground": "#665c54"
+        "scrollbarSlider.activeBackground": "#665c54",
+        "focusBorder": "#504945"
     },
+
+    // === WINDOW ===
+    "window.newWindowFullscreen": true,
+    "window.restoreFullscreen": true,
+    "window.titleBarStyle": "native",
+    "window.commandCenter": false,
+    "window.density.editorTabHeight": "compact",
+    "window.enableMenuBarFocus": false,
+    "window.decorations": "none",
+    "window.menuBarVisibility": "toggle",
+    "window.customTitleBarVisibility": "never",
+    "window.newWindowDimensions": "inherit",
+    "window.openFilesInNewWindow": "off",
+    "window.restoreWindows": "none",
 
     // === MISC ===
     "zenMode.centerLayout": false,
     "security.workspace.trust.untrustedFiles": "open",
     "markdown-preview-enhanced.enablePreviewZenMode": true,
     "code-runner.clearPreviousOutput": true,
-    "workbench.navigationControl.enabled": false,
-    "codium.enable": false,
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4",
-    "gitlens.graph.layout": "editor",
-    "git.openRepositoryInParentFolders": "never",
-    "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
-        "*.sqlite": "default"
-    },
-    "chat.commandCenter.enabled": false,
-
-    // === FORCE FULLSCREEN AND HIDE UI ===
-    "window.newWindowFullscreen": true,
-    "window.restoreFullscreen": true,
-    "window.titleBarStyle": "native",
-    "window.commandCenter": false,
-    "window.density.editorTabHeight": "compact",
-
-    // === CRITICAL FOR WAYLAND/SWAY ===
-    "window.enableMenuBarFocus": false,
-    "window.decorations": "none",
-    // "window.newWindowDimensions": "fullscreen",
-    "workbench.statusBar.visible": false,
-    "window.menuBarVisibility": "toggle",
-    "window.customTitleBarVisibility": "never",
-    
+    "code-runner.enableAppInsights": false,
+    "explorer.compactFolders": true,
     "files.autoSave": "afterDelay",
-    "telemetry.telemetryLevel": "off",
-    "gitlens.telemetry.enabled": false,
-    "code-runner.enableAppInsights": false
+    "telemetry.telemetryLevel": "off"
 }
