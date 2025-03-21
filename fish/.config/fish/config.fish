@@ -21,6 +21,7 @@ set -Ux __GLX_VENDOR_LIBRARY_NAME mesa         # Ensures Mesa is used for OpenGL
 set -Ux MESA_NO_ERROR 1                        # Disables Mesa error checking (slightly faster)  
 set -Ux MESA_GL_VERSION_OVERRIDE 4.6           # Forces OpenGL 4.6 (useful for older apps)  
 set -Ux MESA_GLSL_CACHE_DISABLE 0              # Enables GLSL shader caching  
+set -Ux MESA_SHADER_CACHE_DISABLE 0              # Enables GLSL shader caching  
 set -Ux MESA_SHADER_CACHE_DIR "$HOME/.cache/mesa"  # Custom shader cache directory  
 
 set -Ux WLR_RENDERER vulkan                     # Use Vulkan renderer (better for some setups)  
@@ -57,6 +58,7 @@ set -Ux TERMINAL kitty
 # alias
 alias ls="eza --icons --group-directories-first --color=auto"
 alias r='ranger'
+alias rm='trash-put'
 
 # Environment Variable
 # set -x QT_QPA_PLATFORMTHEME qt5ct
