@@ -1,83 +1,86 @@
-### ======================== SWAYFX CONFIGURATION =============================================
+# >>> SWAYFX
 
 # =============================================================================================
 # WINDOW BLUR SETTINGS
 # =============================================================================================
 blur enable
-blur_passes 3 
-blur_radius 5  
-blur_xray enable 
-blur_noise 0.02  
-corner_radius 2
+blur_passes 3
+blur_radius 5
+blur_xray disable
+corner_radius 3
+smart_corner_radius enable
+# dim_inactive 0.8
 
 # =============================================================================================
 # WINDOW SHADOWS SETTINGS
 # =============================================================================================
 shadows enable
 shadows_on_csd enable
-shadow_blur_radius 6 
-shadow_color #28282855  
-shadow_inactive_color #28282822
+shadow_blur_radius 20
+shadow_color #00000055  
+shadow_inactive_color #00000033  
+shadow_offset 3 3  
 
 # =============================================================================================
-# LAYERSHELL EFFECTS
+# LAYERSHELL EFFECTS (Waybar, Rofi, SwayNC, etc.)
 # =============================================================================================
-# Effects for specific Wayland layers (e.g., Waybar, Rofi, SwayNC)
 layer_effects "waybar" {
-    blur enable;
-    blur_xray enable;
-    blur_ignore_transparent enable;
-    shadows enable;
-    corner_radius 0;
+    blur disable;
+    shadows disable;
+    corner_radius 4;
 }
-layer_effects "rofi" {
+
+layer_effects "gtk-layer-shell" {
     blur enable;
-    blur_xray enable;
-    blur_ignore_transparent enable;
     shadows enable;
-    corner_radius 0;
+    corner_radius 5;
 }
+
 layer_effects "swaync" {
     blur enable;
-    blur_xray enable;
-    blur_ignore_transparent enable;
     shadows enable;
-    corner_radius 0;
+    corner_radius 5;
 }
 
 # =============================================================================================
 # GENERAL UI SETTINGS
 # =============================================================================================
 font pango: JetBrainsMono Nerd Font Bold 10
-titlebar_padding 1
+titlebar_padding 3  
 titlebar_border_thickness 0
+titlebar_separator disable  
 
 # =============================================================================================
 # BORDER AND WINDOW APPEARANCE
 # =============================================================================================
 set $color1     #222222
-# set $color2     #458588
-set $color2    #81d1d5
+set $color2     #458588
 
 client.focused               $color2  $color2  $color1  $color2  $color2
 client.unfocused             $color1  $color1  $color2  $color1  $color1
 client.focused_inactive      $color2  $color1  $color2  $color1  $color1
 client.urgent                $color2  $color2  $color1  $color2  $color1
+client.background            $color1  
 
-for_window [class=".*"] opacity 0.98
-for_window [app_id="^.*"] border pixel 2
+for_window [class=".*"] opacity 1
+for_window [app_id="^.*"] border pixel 3
 for_window [class=".*"] title_format "== %title =="
 
-default_border none
-default_floating_border none
+default_border pixel 3
+default_floating_border pixel 3
 
 gaps inner 12
 gaps outer 0
 
+# =============================================================================================
+# WINDOW FOCUS & WORKSPACE MANAGEMENT
+# =============================================================================================
 focus_on_window_activation focus
+# focus_on_window_activation smart
+for_window [window_role="dialog"] floating enable, resize set 600 400
+
 for_window [class="Brave-browser"] focus
 for_window [app_id="code"] focus
-exec swaymsg 'for_window [class="Code"] focus'
 for_window [app_id="kitty"] focus
 
 assign [class="Brave-browser"] 1
@@ -91,6 +94,25 @@ assign [app_id="code"] 3
 # Import current display environment for xdg-desktop-portal services
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# >> Run with every reload
+exec_always {
+    # Xwayland app settings
+    xrdb ~/.Xdefaults
+}
+
+# >> GTK
+# https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland#setting-values-in-gsettings
+set $gnome-schema org.gnome.desktop.interface
+exec {
+    gsettings set org.gtk.Settings.FileChooser window-size '(600, 400)'
+    gsettings set org.gnome.desktop.interface gtk-theme 'Gruvbox-Material-Dark'
+    gsettings set org.gnome.desktop.interface icon-theme 'Gruvbox-Material-Dark'
+    gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font Mono Bold 9'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Hackneyed-24px'
+    gsettings set org.gnome.desktop.interface cursor-size 24
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+}
 
 bar {
   swaybar_command waybar
@@ -125,7 +147,7 @@ set $term kitty
 set $menu "~/.config/rofi/scripts/launcher_t4"
 
 # =============================================================================================
-# OUTPUT CONFIGURATION
+# OUTPUT SETTINGS
 # =============================================================================================
 output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
 output * adaptive_sync enable
@@ -158,16 +180,15 @@ exec swayidle -w \
 # KEY BINDINGS
 # =============================================================================================
 # Screenshot
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot.png
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png
+bindsym $mod+Print exec grim ~/Pictures/fullscreen-$(date +'%Y%m%d-%H%M%S').png
 
 # SwayNC Notifications
 bindsym $mod+n exec swaync-client --toggle-panel
 
-# Rofi Power Menu
+# Rofi
 bindsym $mod+Shift+e exec "~/.config/rofi/powermenu/type-3/powermenu.sh"
 bindsym Mod4+q exec ~/.config/rofi/applets/bin/quicklinks.sh
-
-# Power Off
 bindsym --to-code XF86PowerOff exec "~/.config/rofi/powermenu/type-3/powermenu.sh"
 
 # Volume Control
