@@ -17,11 +17,11 @@
 window#waybar {
   color: #ebdbb2;
   /* background: none; */
-  /* background: rgba(40, 40, 40, 0.95); */
+  /* background: rgb(40, 40, 40); */
 }
 
 window#waybar.hidden {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 #power-profiles-daemon,
@@ -83,7 +83,7 @@ window#waybar.hidden {
 
 #custom-rofi {
   background: #83a598;
-  padding: 0 6px;
+  padding: 0 7px;
 }
 
 /* ================================ */
@@ -265,4 +265,6 @@ window#waybar.hidden {
   background: #458588;
   padding-left: 3px;
   padding-right: 3px;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
