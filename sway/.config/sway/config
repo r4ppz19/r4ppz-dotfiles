@@ -91,17 +91,10 @@ assign [app_id="code"] 3
 # AUTOSTART APPLICATIONS
 # =============================================================================================
 # Essentials:
-# Import current display environment for xdg-desktop-portal services
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec "dbus-update-activation-environment --systemd --all"
+exec "dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=sway"
 
-# >> Run with every reload
-exec_always {
-    # Xwayland app settings
-    xrdb ~/.Xdefaults
-}
-
-# >> GTK
+# GTK
 # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland#setting-values-in-gsettings
 set $gnome-schema org.gnome.desktop.interface
 exec {
@@ -118,6 +111,7 @@ bar {
   swaybar_command waybar
 }
 
+exec xrdb ~/.Xdefaults
 exec swaync
 exec gammastep -O 3500
 exec nm-applet --indicator
