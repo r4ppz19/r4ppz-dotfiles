@@ -137,8 +137,8 @@
     "window.customTitleBarVisibility": "never",
     "window.newWindowDimensions": "inherit",
     "window.openFilesInNewWindow": "off",
-    "window.restoreWindows": "none",
-    "window.zoomLevel": 0.6,
+    "window.restoreWindows": "preserve",
+    "window.zoomLevel": -0.7,
 
     // === MISC ===
     "zenMode.centerLayout": false,
