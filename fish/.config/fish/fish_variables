@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export BLUEZ_AUTO_ENABLE:1
-SETUVAR --export EDITOR:code
+SETUVAR --export EDITOR:zed
 SETUVAR --export ELECTRON_OZONE_PLATFORM_HINT:wayland
 SETUVAR --export GBM_BACKEND:nir
 SETUVAR --export GDK_BACKEND:wayland
@@ -19,7 +19,7 @@ SETUVAR --export QT_QPA_PLATFORM:wayland
 SETUVAR --export QT_QPA_PLATFORMTHEME:gtk2
 SETUVAR --export SWT_AUTO_WAYLAND:1
 SETUVAR --export TERMINAL:kitty
-SETUVAR --export VISUAL:code
+SETUVAR --export VISUAL:zed
 SETUVAR --export WIREPLUMBER_CONFIG_DIR:/home/r4ppz/\x2econfig/wireplumber
 SETUVAR --export WLR_DRM_NO_ATOMIC:1
 SETUVAR --export WLR_NO_HARDWARE_CURSORS:1
