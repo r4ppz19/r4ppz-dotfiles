@@ -93,10 +93,12 @@ for_window [class="Brave-browser"] focus
 for_window [app_id="code"] focus
 for_window [app_id="kitty"] focus
 for_window [app_id="dev.zed.Zed"] focus
+for_window [app_id="nemo"] focus
 
 assign [class="Brave-browser"] 1
-# assign [app_id="kitty"] 2
-# assign [app_id="code"] 3
+assign [app_id="nemo"] 2
+assign [app_id="kitty"] 3
+assign [app_id="code"] 4
 
 # =============================================================================================
 # AUTOSTART
@@ -224,6 +226,9 @@ bindsym $mod+KP_9 workspace 9
 # bindsym Ctrl+Alt+Right workspace next
 # bindsym Ctrl+Alt+Left workspace prev
 
+# Nemo file manager
+bindsym $mod+e exec nemo
+
 # =============================================================================================
 # DEFAULT KEY BINDINGS
 # =============================================================================================
@@ -276,9 +281,9 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # === Layout Management ===
 bindsym $mod+b splith
 bindsym $mod+v splitv
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
