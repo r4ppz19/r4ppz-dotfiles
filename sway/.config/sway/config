@@ -7,7 +7,7 @@ blur enable
 blur_passes 3
 blur_radius 5
 blur_xray disable
-corner_radius 3
+corner_radius 1
 smart_corner_radius enable
 # dim_inactive 0.8
 
@@ -17,38 +17,38 @@ smart_corner_radius enable
 shadows enable
 shadows_on_csd enable
 shadow_blur_radius 20
-shadow_color #00000055  
-shadow_inactive_color #00000033  
-shadow_offset 3 3  
+shadow_color #00000055
+shadow_inactive_color #00000033
+shadow_offset 3 3
 
 # =============================================================================================
 # LAYERSHELL EFFECTS (Waybar, Rofi, SwayNC, etc.)
 # =============================================================================================
 layer_effects "waybar" {
-    blur disable;
-    shadows disable;
-    corner_radius 4;
-}
-
-layer_effects "gtk-layer-shell" {
     blur enable;
     shadows enable;
-    corner_radius 5;
+    corner_radius 0;
 }
 
-layer_effects "swaync" {
-    blur enable;
-    shadows enable;
-    corner_radius 5;
-}
+# layer_effects "gtk-layer-shell" {
+#     blur enable;
+#     shadows enable;
+#     corner_radius 1;
+# }
+
+# layer_effects "swaync" {
+#     blur enable;
+#     shadows enable;
+#     corner_radius 1;
+# }
 
 # =============================================================================================
 # GENERAL UI SETTINGS
 # =============================================================================================
 font pango: JetBrainsMono Nerd Font Bold 10
-titlebar_padding 3  
+titlebar_padding 3
 titlebar_border_thickness 0
-titlebar_separator disable  
+titlebar_separator disable
 
 # =============================================================================================
 # BORDER AND WINDOW APPEARANCE
@@ -60,16 +60,16 @@ client.focused               $color2  $color2  $color1  $color2  $color2
 client.unfocused             $color1  $color1  $color2  $color1  $color1
 client.focused_inactive      $color2  $color1  $color2  $color1  $color1
 client.urgent                $color2  $color2  $color1  $color2  $color1
-client.background            $color1  
+client.background            $color1
 
 for_window [class=".*"] opacity 1
 for_window [app_id="^.*"] border pixel 3
-for_window [class=".*"] title_format "== %title =="
+for_window [class=".*"] titlebar none
 
 default_border pixel 3
 default_floating_border pixel 3
 
-gaps inner 12
+gaps inner 20
 gaps outer 0
 
 # =============================================================================================
@@ -77,18 +77,29 @@ gaps outer 0
 # =============================================================================================
 focus_on_window_activation focus
 # focus_on_window_activation smart
-for_window [window_role="dialog"] floating enable, resize set 600 400
 
+for_window [window_role="dialog"] floating enable, resize
+for_window [app_id="xdg-desktop-portal-gtk"] floating enable, resize set 600 400
+
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+for_window [app_id="imv"] floating enable, resize set 600 400
+for_window [app_id="mpv"] floating enable, resize set 600 400
+for_window [app_id="nm-connection-editor"] floating enable, resize set 600 400
+for_window [app_id="blueman-manager"] floating enable, resize set 600 400
+for_window [app_id="tlpui"] floating enable, resize set 700 500
+
+for_window [floating] move position center
 for_window [class="Brave-browser"] focus
 for_window [app_id="code"] focus
 for_window [app_id="kitty"] focus
+for_window [app_id="dev.zed.Zed"] focus
 
 assign [class="Brave-browser"] 1
-assign [app_id="kitty"] 2
-assign [app_id="code"] 3
+# assign [app_id="kitty"] 2
+# assign [app_id="code"] 3
 
 # =============================================================================================
-# AUTOSTART APPLICATIONS
+# AUTOSTART
 # =============================================================================================
 # Essentials:
 exec "dbus-update-activation-environment --systemd --all"
@@ -117,9 +128,6 @@ exec gammastep -O 3500
 exec nm-applet --indicator
 exec_always autotiling-rs
 # exec ydotoold
-# exec swaymsg "workspace 1; exec brave"
-# exec swaymsg "workspace 2; exec kitty"
-# exec swaymsg "workspace 3; exec code"
 # exec swaymsg output HDMI-A-1 enable
 
 # =============================================================================================
@@ -142,7 +150,7 @@ set $menu "~/.config/rofi/scripts/launcher_t4"
 
 # =============================================================================================
 # OUTPUT SETTINGS
-# =============================================================================================
+
 output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
 output * adaptive_sync enable
 output * scale 1
@@ -174,8 +182,8 @@ exec swayidle -w \
 # KEY BINDINGS
 # =============================================================================================
 # Screenshot
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png
-bindsym $mod+Print exec grim ~/Pictures/fullscreen-$(date +'%Y%m%d-%H%M%S').png
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot-$(date +'%Y%m%d-%H%M%S').png
+bindsym $mod+Print exec grim ~/Pictures/Screenshots/fullscreen-$(date +'%Y%m%d-%H%M%S').png
 
 # SwayNC Notifications
 bindsym $mod+n exec swaync-client --toggle-panel
@@ -190,7 +198,7 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# Brightness Control 
+# Brightness Control
 bindsym XF86MonBrightnessUp exec brightnessctl s +5%
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 
@@ -213,8 +221,8 @@ bindsym $mod+KP_7 workspace 7
 bindsym $mod+KP_8 workspace 8
 bindsym $mod+KP_9 workspace 9
 
-bindsym Ctrl+Alt+Right workspace next
-bindsym Ctrl+Alt+Left workspace prev
+# bindsym Ctrl+Alt+Right workspace next
+# bindsym Ctrl+Alt+Left workspace prev
 
 # =============================================================================================
 # DEFAULT KEY BINDINGS
