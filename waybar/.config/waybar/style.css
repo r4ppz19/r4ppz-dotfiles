@@ -12,7 +12,7 @@
 window#waybar {
   color: #ebdbb2;
   /* background: none; */
-  background: #32302f;
+  background: #3C3836;
 }
 
 window#waybar.hidden {
@@ -50,10 +50,10 @@ window#waybar.hidden {
   font-family: JetBrainsMono Nerd Font Propo;
   font-size: 9px;
   font-weight: 800;
-  color: #32302f;
-  background: #32302f;
-  border: 3px solid #32302f;
-  border-radius: 3px;
+  color: #3C3836;
+  background: #3C3836;
+  border: 5px solid #3C3836;
+  border-radius: 0px;
 }
 
 #window,
