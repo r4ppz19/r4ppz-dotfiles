@@ -10,16 +10,17 @@ blur_xray disable
 corner_radius 1
 smart_corner_radius enable
 # dim_inactive 0.8
+default_dim_inactive 0.3
 
 # =============================================================================================
 # WINDOW SHADOWS SETTINGS
 # =============================================================================================
 shadows enable
-shadows_on_csd enable
+# shadows_on_csd enable
 shadow_blur_radius 20
-shadow_color #00000055
-shadow_inactive_color #00000033
-shadow_offset 3 3
+# shadow_color #00000055
+# shadow_inactive_color #00000033
+# shadow_offset 3 3
 
 # =============================================================================================
 # LAYERSHELL EFFECTS (Waybar, Rofi, SwayNC, etc.)
@@ -161,11 +162,11 @@ output * scale 1
 # INPUT SETTINGS
 # =============================================================================================
 input type:keyboard xkb_numlock enabled
-input * {
-    xkb_options caps:escape
-    repeat_delay 500
-    repeat_rate 50
-}
+# input * {
+#     xkb_options caps:escape
+#     repeat_delay 500
+#     repeat_rate 50
+# }
 input type:touchpad {
     natural_scroll enabled
     accel_profile flat
@@ -223,8 +224,8 @@ bindsym $mod+KP_7 workspace 7
 bindsym $mod+KP_8 workspace 8
 bindsym $mod+KP_9 workspace 9
 
-# bindsym Ctrl+Alt+Right workspace next
-# bindsym Ctrl+Alt+Left workspace prev
+bindsym Ctrl+$mod+Right workspace next
+bindsym Ctrl+$mod+Left workspace prev
 
 # Nemo file manager
 bindsym $mod+e exec nemo
