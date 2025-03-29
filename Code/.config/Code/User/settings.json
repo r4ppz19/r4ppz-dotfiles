@@ -128,7 +128,7 @@
     // === WINDOW ===
     "window.newWindowFullscreen": true,
     "window.restoreFullscreen": true,
-    "window.titleBarStyle": "native",
+    // "window.titleBarStyle": "",
     "window.commandCenter": false,
     "window.density.editorTabHeight": "compact",
     "window.enableMenuBarFocus": false,
@@ -138,6 +138,7 @@
     "window.newWindowDimensions": "inherit",
     "window.openFilesInNewWindow": "off",
     "window.restoreWindows": "preserve",
+    "window.titleBarStyle": "native",
     "window.zoomLevel": -0.7,
 
     // === MISC ===
@@ -148,5 +149,6 @@
     "code-runner.enableAppInsights": false,
     "explorer.compactFolders": true,
     "files.autoSave": "afterDelay",
-    "telemetry.telemetryLevel": "off"
+    "telemetry.telemetryLevel": "off",
+    "chat.commandCenter.enabled": false,
 }
