@@ -10,7 +10,7 @@ blur_xray disable
 corner_radius 1
 smart_corner_radius enable
 # dim_inactive 0.8
-default_dim_inactive 0.3
+default_dim_inactive 0.2
 
 # =============================================================================================
 # WINDOW SHADOWS SETTINGS
@@ -77,7 +77,7 @@ focus_on_window_activation focus
 # focus_on_window_activation smart
 
 for_window [class=".*"] opacity 1
-for_window [app_id="^.*"] floating enable, border pixel 3
+for_window [app_id="^.*"] floating enable, border pixel 3, resize set 800 600
 for_window [class=".*"] titlebar none
 
 for_window [window_role="dialog"] floating enable
@@ -91,7 +91,7 @@ for_window [app_id="xdg-desktop-portal-gtk"] floating enable
 
 for_window [class="Brave-browser"] floating disable, focus
 for_window [app_id="code"] floating disable, focus
-for_window [title=".*Visual Studio Code"] move to workspace 4
+for_window [title=".*Visual Studio Code"] floating disable, focus
 for_window [app_id="kitty"] floating disable, focus
 for_window [app_id="dev.zed.Zed"] floating disable, focus
 for_window [app_id="nemo"] floating disable, focus
@@ -99,10 +99,10 @@ for_window [class="Google-chrome"] floating disable, focus
 for_window [app_id="com.obsproject.Studio"] floating disable, focus
 
 assign [class="Brave-browser"] 1
-assign [app_id="nemo"] 3
 assign [app_id="kitty"] 2
-assign [app_id="code"] 4
-for_window [title=".*Visual Studio Code"] floating disable, focus
+assign [app_id="code"] 3
+assign [app_id="nemo"] 4
+for_window [title=".*Visual Studio Code"] move to workspace 3
 
 # =============================================================================================
 # AUTOSTART
