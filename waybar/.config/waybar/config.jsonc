@@ -168,7 +168,7 @@
     "on-click-middle": "kitty -e ncmpcpp",
   },
   "custom/playerctl": {
-    "exec": "playerctl metadata --format '{{title}}' 2>/dev/null | awk '{if(length($0) > 20) print substr($0,1,20)\"...\"; else print $0}' || echo 'No media playing'",
+    "exec": "playerctl metadata --format '{{title}}' 2>/dev/null | awk '{if(length($0) > 40) print substr($0,1,20)\"...\"; else print $0}' || echo 'No media playing'",
     "interval": 2,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
