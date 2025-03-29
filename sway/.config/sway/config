@@ -31,17 +31,17 @@ layer_effects "waybar" {
     corner_radius 0;
 }
 
-# layer_effects "gtk-layer-shell" {
-#     blur enable;
-#     shadows enable;
-#     corner_radius 1;
-# }
+layer_effects "gtk-layer-shell" {
+    blur enable;
+    shadows enable;
+    corner_radius 1;
+}
 
-# layer_effects "swaync" {
-#     blur enable;
-#     shadows enable;
-#     corner_radius 1;
-# }
+layer_effects "swaync" {
+    blur enable;
+    shadows enable;
+    corner_radius 1;
+}
 
 # =============================================================================================
 # GENERAL UI SETTINGS
@@ -63,9 +63,6 @@ client.focused_inactive      $color2  $color1  $color2  $color1  $color1
 client.urgent                $color2  $color2  $color1  $color2  $color1
 client.background            $color1
 
-for_window [class=".*"] opacity 1
-for_window [app_id="^.*"] border pixel 3
-for_window [class=".*"] titlebar none
 
 default_border pixel 3
 default_floating_border pixel 3
@@ -79,34 +76,43 @@ gaps outer 0
 focus_on_window_activation focus
 # focus_on_window_activation smart
 
-for_window [window_role="dialog"] floating enable, resize
-for_window [app_id="xdg-desktop-portal-gtk"] floating enable, resize set 600 400
+for_window [class=".*"] opacity 1
+for_window [app_id="^.*"] floating enable, border pixel 3
+for_window [class=".*"] titlebar none
 
-for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
-for_window [app_id="imv"] floating enable, resize set 600 400
-for_window [app_id="mpv"] floating enable, resize set 600 400
-for_window [app_id="nm-connection-editor"] floating enable, resize set 600 400
-for_window [app_id="blueman-manager"] floating enable, resize set 600 400
-for_window [app_id="tlpui"] floating enable, resize set 700 500
+for_window [window_role="dialog"] floating enable
+for_window [app_id="xdg-desktop-portal-gtk"] floating enable
+# for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+# for_window [app_id="imv"] floating enable, resize set 600 400
+# for_window [app_id="mpv"] floating enable, resize set 600 400
+# for_window [app_id="nm-connection-editor"] floating enable, resize set 600 400
+# for_window [app_id="blueman-manager"] floating enable, resize set 600 400
+# for_window [app_id="tlpui"] floating enable, resize set 700 500
 
-for_window [floating] move position center
-for_window [class="Brave-browser"] focus
-for_window [app_id="code"] focus
-for_window [app_id="kitty"] focus
-for_window [app_id="dev.zed.Zed"] focus
-for_window [app_id="nemo"] focus
+for_window [class="Brave-browser"] floating disable, focus
+for_window [app_id="code"] floating disable, focus
+for_window [title=".*Visual Studio Code"] move to workspace 4
+for_window [app_id="kitty"] floating disable, focus
+for_window [app_id="dev.zed.Zed"] floating disable, focus
+for_window [app_id="nemo"] floating disable, focus
+for_window [class="Google-chrome"] floating disable, focus
+for_window [app_id="com.obsproject.Studio"] floating disable, focus
 
 assign [class="Brave-browser"] 1
-assign [app_id="nemo"] 2
-assign [app_id="kitty"] 3
+assign [app_id="nemo"] 3
+assign [app_id="kitty"] 2
 assign [app_id="code"] 4
+for_window [title=".*Visual Studio Code"] floating disable, focus
 
 # =============================================================================================
 # AUTOSTART
 # =============================================================================================
 # Essentials:
-exec "dbus-update-activation-environment --systemd --all"
-exec "dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=sway"
+# exec "dbus-update-activation-environment --systemd --all"
+# exec "dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=sway"
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
 
 # GTK
 # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland#setting-values-in-gsettings
