@@ -47,14 +47,15 @@ zinit light hlissner/zsh-autopair
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Defaults
-export EDITOR="zed"
-export VISUAL="zed"
+export EDITOR="micro"
+export VISUAL="micro"
 export TERMINAL="kitty"
 
 # Aliases
 alias ls="eza --icons --group-directories-first --color=auto"
 alias r="ranger"
 alias rm="trash-put"
+alias nano='micro'
 
 # Set environment variables for Wayland and Sway
 export XDG_CURRENT_DESKTOP="sway"
