@@ -1,0 +1,10 @@
+{
+    "tabsize": 4,
+    "autoindent": true,
+    "softwrap": false,
+    "wordwrap": false,
+    "hlsearch": true,
+    "cursorline": true,
+    "ruler": false,
+    "colorscheme": "gruvbox"
+}
