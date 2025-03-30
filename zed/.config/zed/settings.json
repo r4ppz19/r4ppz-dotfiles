@@ -1,0 +1,75 @@
+{
+  "base_keymap": "VSCode",
+  "autosave": "off",
+  "format_on_save": "on",
+
+  "buffer_font_size": 12,
+  "buffer_font_weight": 300,
+  "buffer_font_family": "JetBrainsMono Nerd Font Propo",
+
+  "buffer_line_height": {
+    "custom": 1.3
+  },
+
+  "ui_font_size": 13,
+  "ui_font_weight": 500,
+  "ui_font_family": "JetBrainsMono Nerd Font",
+
+  "soft_wrap": "preferred_line_length",
+  "preferred_line_length": 140,
+
+  "gutter": {
+    // Whether to show line numbers in the gutter.
+    "line_numbers": true,
+    // Whether to show code action buttons in the gutter.
+    "code_actions": true,
+    // Whether to show runnables buttons in the gutter.
+    "runnables": true,
+    // Whether to show breakpoints in the gutter.
+    "breakpoints": true,
+    // Whether to show fold buttons in the gutter.
+    "folds": true
+  },
+
+  "con_theme": "Material Icon Theme",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Gruvbox Material"
+  },
+
+  "active_pane_modifiers": {
+    "magnification": 1.0,
+    "border_size": 0.0,
+    "inactive_opacity": 0.5
+  },
+
+  "assistant": {
+    "version": "2",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3-7-sonnet"
+    },
+    "editor_model": {
+      "provider": "copilot_chat",
+      "model": "gt-4"
+    }
+  },
+
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "project_panel": {
+    "indent_size": 10
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  }
+}
