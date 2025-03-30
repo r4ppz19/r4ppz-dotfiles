@@ -56,6 +56,13 @@ alias ls="eza --icons --group-directories-first --color=auto"
 alias r="ranger"
 alias rm="trash-put"
 alias nano='micro'
+alias gce='gh copilot explain'
+alias gcs='gh copilot suggest'
+
+# Keybindings
+bindkey -e  # Use Emacs keybindings (default)
+bindkey "^[[1;5D" backward-word  # Ctrl + Left = Move left by word
+bindkey "^[[1;5C" forward-word   # Ctrl + Right = Move right by word
 
 # Set environment variables for Wayland and Sway
 export XDG_CURRENT_DESKTOP="sway"
