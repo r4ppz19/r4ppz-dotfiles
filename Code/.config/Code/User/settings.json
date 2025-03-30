@@ -151,4 +151,5 @@
     "files.autoSave": "afterDelay",
     "telemetry.telemetryLevel": "off",
     "chat.commandCenter.enabled": false,
+    "diffEditor.codeLens": true,
 }
