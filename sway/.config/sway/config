@@ -152,6 +152,51 @@ set $right l
 set $term kitty
 set $menu "~/.config/rofi/scripts/launcher_t4"
 
+# ENVIRONMENT VARIABLES
+
+# Fix session info for Sway
+set $XDG_CURRENT_DESKTOP Sway
+set $XDG_SESSION_DESKTOP Sway
+set $XDG_SESSION_TYPE wayland
+
+# Sway Optimizations
+set $LIBVA_DRIVER_NAME iHD
+set $MOZ_ENABLE_WAYLAND 1
+set $WLR_RENDERER_ALLOW_THREADED 1
+set $SWT_AUTO_WAYLAND 1
+set $GDK_BACKEND wayland
+set $QT_QPA_PLATFORM wayland
+# set $WLR_NO_HARDWARE_CURSORS 1
+# set $WLR_DRM_NO_ATOMIC 1
+
+# GPU Performance Tweaks
+set $GBM_BACKEND nir
+set $__GLX_VENDOR_LIBRARY_NAME mesa
+set $MESA_NO_ERROR 1
+set $MESA_GL_VERSION_OVERRIDE 4.6
+set $MESA_GLSL_CACHE_DISABLE 0
+set $MESA_SHADER_CACHE_DISABLE 0
+set $MESA_SHADER_CACHE_DIR $HOME/.cache/mesa
+
+# Vulkan & Qt Settings
+set $WLR_RENDERER vulkan
+set $QT_QPA_PLATFORMTHEME gtk2
+set $XCURSOR_SIZE 24
+
+# Audio Optimizations
+set $PIPEWIRE_LATENCY 128/48000
+set $WIREPLUMBER_CONFIG_DIR $HOME/.config/wireplumber
+set $PULSE_LATENCY_MSEC 32
+set $BLUEZ_AUTO_ENABLE 1
+
+# XDG and GTK Fixes
+set $XDG_DATA_HOME $HOME/.local/share
+set $GTK_USE_PORTAL 1
+
+# Electron & Firefox
+set $ELECTRON_OZONE_PLATFORM_HINT wayland
+# set $MOZ_DISABLE_RDD_SANDBOX 1  # Helps Firefox video decoding on Intel GPUs (optional)
+
 # =============================================================================================
 # OUTPUT SETTINGS
 # =============================================================================================

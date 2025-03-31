@@ -16,7 +16,7 @@ window#waybar {
 }
 
 window#waybar.hidden {
-  opacity: 1;
+  opacity: 0.98;
 }
 
 #power-profiles-daemon,
@@ -48,7 +48,7 @@ window#waybar.hidden {
 #mpd,
 #custom-playerctl {
   font-family: JetBrainsMono Nerd Font Propo;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 800;
   color: #3C3836;
   background: #3C3836;
