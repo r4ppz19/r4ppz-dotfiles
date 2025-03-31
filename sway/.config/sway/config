@@ -3,6 +3,7 @@
 # =============================================================================================
 # WINDOW BLUR SETTINGS
 # =============================================================================================
+
 blur enable
 blur_passes 3
 blur_radius 5
@@ -15,6 +16,7 @@ default_dim_inactive 0.2
 # =============================================================================================
 # WINDOW SHADOWS SETTINGS
 # =============================================================================================
+
 shadows enable
 # shadows_on_csd enable
 shadow_blur_radius 20
@@ -25,6 +27,7 @@ shadow_blur_radius 20
 # =============================================================================================
 # LAYERSHELL EFFECTS (Waybar, Rofi, SwayNC, etc.)
 # =============================================================================================
+
 layer_effects "waybar" {
     blur enable;
     shadows enable;
@@ -46,16 +49,21 @@ layer_effects "swaync" {
 # =============================================================================================
 # GENERAL UI SETTINGS
 # =============================================================================================
+
 font pango: JetBrainsMono Nerd Font Bold 10
 titlebar_padding 3
 titlebar_border_thickness 0
 titlebar_separator disable
 
 # =============================================================================================
-# BORDER AND WINDOW APPEARANCE
+# BORDER AND WINDOW
 # =============================================================================================
-set $color1     #222222
-set $color2     #458588
+
+# set $color1     #222222
+# set $color2     #458588
+
+set $color1     #346467
+set $color2     #4d9397
 
 client.focused               $color2  $color2  $color1  $color2  $color2
 client.unfocused             $color1  $color1  $color2  $color1  $color1
@@ -63,21 +71,35 @@ client.focused_inactive      $color2  $color1  $color2  $color1  $color1
 client.urgent                $color2  $color2  $color1  $color2  $color1
 client.background            $color1
 
-default_border pixel 3
-default_floating_border pixel 3
-
 gaps inner 20
 gaps outer 0
 
-# =============================================================================================
-# WINDOW FOCUS & WORKSPACE MANAGEMENT
-# =============================================================================================
+default_border pixel 3
 
+focus_follows_mouse no
+focus new_window
 
+for_window [floating] focus
+for_window [floating] border pixel 3
+
+# assign [class="Brave-browser"] workspace 1
+# assign [app_id="kitty"] workspace 2
+# assign [class="Code"] workspace 3
+
+for_window [app_id="stacer"] floating enable, resize set 800 600
+for_window [app_id="org.qbittorrent.qBittorrent"] floating enable, resize set 800 600
+for_window [app_id="blueman-manager"] floating enable, resize set 800 600
+for_window [app_id="tlpui"] floating enable, resize set 800 600
+for_window [app_id="dconf-editor"] floating enable, resize set 800 600
+for_window [app_id="yad"] floating enable, resize set 800 600
+for_window [app_id="psensor"] floating enable, resize set 800 600
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, resize set 800 600
+for_window [app_id="mpv"] floating enable, resize set 800 600
 
 # =============================================================================================
 # AUTOSTART
 # =============================================================================================
+
 # Essentials:
 # exec "dbus-update-activation-environment --systemd --all"
 # exec "dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=sway"
@@ -113,6 +135,7 @@ exec_always autotiling-rs
 # =============================================================================================
 # CURSOR AND MOUSE BEHAVIOR
 # =============================================================================================
+
 seat * xcursor_theme Hackneyed-24px 24
 focus_follows_mouse no
 mouse_warping none
@@ -120,6 +143,7 @@ mouse_warping none
 # =============================================================================================
 # VARIABLE DEFINITIONS
 # =============================================================================================
+
 set $mod Mod4
 set $left h
 set $down j
@@ -130,6 +154,7 @@ set $menu "~/.config/rofi/scripts/launcher_t4"
 
 # =============================================================================================
 # OUTPUT SETTINGS
+# =============================================================================================
 
 output * bg ~/Pictures/Wallpaper/wallpaper11.png fill
 output * adaptive_sync enable
@@ -138,6 +163,7 @@ output * scale 1
 # =============================================================================================
 # INPUT SETTINGS
 # =============================================================================================
+
 input type:keyboard xkb_numlock enabled
 # input * {
 #     xkb_options caps:escape
@@ -153,6 +179,7 @@ input type:touchpad {
 # =============================================================================================
 # IDLE CONFIGURATION
 # =============================================================================================
+
 exec swayidle -w \
     timeout 600 'swaylock -f --effect-blur 7x5 --clock --indicator' \
     timeout 1200 'swaymsg "output * dpms off"' \
@@ -161,6 +188,7 @@ exec swayidle -w \
 # =============================================================================================
 # KEY BINDINGS
 # =============================================================================================
+
 # Screenshot
 bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot-$(date +'%Y%m%d-%H%M%S').png
 bindsym $mod+Print exec grim ~/Pictures/Screenshots/fullscreen-$(date +'%Y%m%d-%H%M%S').png
@@ -212,6 +240,7 @@ bindsym $mod+Shift+v exec cliphist list | fzf --reverse | cliphist pick -c
 # =============================================================================================
 # DEFAULT KEY BINDINGS
 # =============================================================================================
+
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu

@@ -64,7 +64,6 @@
     "workbench.activityBar.location": "bottom",
     "workbench.layoutControl.enabled": false,
     "workbench.navigationControl.enabled": false,
-    "workbench.statusBar.visible": false,
     "workbench.editorAssociations": {
         "*.copilotmd": "vscode.markdown.preview.editor",
         "*.sqlite": "default"
@@ -152,4 +151,7 @@
     "telemetry.telemetryLevel": "off",
     "chat.commandCenter.enabled": false,
     "diffEditor.codeLens": true,
+    "geminicodeassist.inlineSuggestions.enableAuto": false,
+    "workbench.statusBar.visible": false,
+    "explorer.confirmDelete": false,
 }
